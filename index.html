@@ -624,10 +624,10 @@
           <li><a href="Booking.html">الحجوزات</a></li>
         </ul>
 
-      <div class="search-bar" id="searchBar">
-  <span class="material-symbols-rounded">search</span>
+    <div class="search-bar" id="searchBar">
+  <span class="material-symbols-rounded" id="searchIcon">search</span>
   <input type="text" placeholder="ابحثي ..." id="searchInput" />
-  </div>
+</div>
 
 <script>
   document.getElementById("searchInput").addEventListener("keypress", function(event) {
@@ -635,7 +635,14 @@
       window.location.href = "search-results.html";
     }
   });
+
+  document.getElementById("searchIcon").addEventListener("click", function() {
+    window.location.href = "search-results.html";
+  });
 </script>
+
+
+
 
         <div id="authSection" class="nav-actions">
           <div
