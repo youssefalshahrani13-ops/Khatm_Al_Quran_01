@@ -292,8 +292,7 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: var(--spacing-m);
-        color: var(--md-sys-color-on-surface);
-        opacity: 0.72;
+        color: var(--md-sys-color-on-surface); opacity: 0.72;
         font-size: 0.95rem;
       }
       .rating {
@@ -382,8 +381,7 @@
       .footer-col li {
         list-style: none;
         margin-bottom: 12px;
-        color: var(--md-sys-color-on-surface);
-        opacity: 0.72;
+        color: var(--md-sys-color-on-surface); opacity: 0.72;
         cursor: pointer;
       }
       .footer-col li:hover {
@@ -480,50 +478,393 @@
         background-position: center;
         background-repeat: no-repeat;
       }
-      /* ===== Laylah Packages Preview ===== */
-      .laylah-packages-preview {
-        min-height: 440px;
-        padding: 72px 6%;
-        background: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
+/* ===== Search Results Page فقط ===== */
+.search-results-page {
+  padding: 140px 6% 80px;
+  background: var(--md-sys-color-surface);
+}
 
-      .laylah-packages-content {
-        width: min(520px, 100%);
-        margin-inline: auto;
-      }
+.search-results-container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
 
-      .laylah-packages-content h2 {
-        color: var(--md-sys-color-primary);
-        font-size: clamp(2rem, 4vw, 2.7rem);
-        font-weight: 900;
-        line-height: 1.25;
-        margin-bottom: var(--spacing-m);
-      }
+.search-results-header {
+  margin-bottom: var(--spacing-xl);
+}
 
-      .laylah-packages-content p {
-        color: var(--md-sys-color-on-surface);
-        opacity: 0.72;
-        font-size: 1.05rem;
-        line-height: 1.9;
-        margin-bottom: var(--spacing-xl);
-      }
+.search-results-header h1 {
+  color: var(--md-sys-color-primary);
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-s);
+}
 
-      .laylah-packages-actions {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-m);
-        flex-wrap: wrap;
-      }
+.search-results-header p {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.72;
+  font-size: 1rem;
+}
 
-      .laylah-packages-actions .btn {
-        min-width: 176px;
-        justify-content: center;
-      }
+
+
+
+
+.result-card {
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+}
+
+.result-card-image {
+  height: 170px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--md-sys-color-surface-variant);
+}
+
+.result-card-content {
+  padding: var(--spacing-l);
+}
+
+.result-card-meta {
+  display: grid;
+  gap: var(--spacing-s);
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.78;
+  font-size: 0.85rem;
+  margin-bottom: var(--spacing-m);
+}
+
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-primary);
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-bottom: var(--spacing-m);
+}
+
+.result-card-price {
+  color: var(--md-sys-color-primary);
+  font-size: 1rem;
+  font-weight: 900;
+}
+.search-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: var(--spacing-l);
+  align-items: start;
+}
+
+.desktop-filters {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-1);
+  padding: var(--spacing-l);
+}
+
+.mobile-search-actions {
+  display: none;
+}
+
+.search-results-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-l);
+}
+.filters-panel {
+  display: grid;
+  gap: var(--spacing-l);
+}
+
+.filters-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
+  border-bottom: 1px solid var(--md-sys-color-outline);
+}
+
+.filters-panel-header h2 {
+  color: var(--md-sys-color-primary);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.filter-reset-btn {
+  border: none;
+  background: transparent;
+  color: var(--md-sys-color-secondary);
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.filter-group {
+  display: grid;
+  gap: var(--spacing-s);
+}
+
+.filter-group label {
+  color: var(--md-sys-color-primary);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--radius-medium);
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: inherit;
+  outline: none;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 4px var(--md-sys-color-surface-variant);
+}
+
+.price-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-s);
+}
+
+.location-filter-btn {
+  width: 100%;
+  justify-content: center;
+}
+.results-area {
+  min-width: 0;
+}
+
+.results-toolbar {
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-1);
+  padding: var(--spacing-m) var(--spacing-l);
+  margin-bottom: var(--spacing-l);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-m);
+}
+
+.results-toolbar p {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.72;
+  font-weight: 700;
+}
+
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+}
+
+.sort-control label {
+  color: var(--md-sys-color-primary);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.sort-control select {
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--radius-full);
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-primary);
+  font-family: inherit;
+  font-weight: 800;
+  outline: none;
+}
+
+.sort-control select:focus {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 4px var(--md-sys-color-surface-variant);
+}
+.mobile-filter-overlay {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--md-sys-color-on-surface) 45%, transparent);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 20px;
+}
+
+.mobile-filter-overlay.show {
+  display: flex;
+}
+
+.mobile-filter-sheet {
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow: auto;
+  background: var(--md-sys-color-surface);
+  border-radius: var(--radius-large);
+  padding: var(--spacing-l);
+  box-shadow: var(--shadow-2);
+}
+
+.mobile-filter-header,
+.mobile-filter-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+}
+
+.mobile-filter-header {
+  margin-bottom: var(--spacing-l);
+}
+
+.mobile-filter-body {
+  display: grid;
+  gap: var(--spacing-l);
+  margin-bottom: var(--spacing-l);
+}
+
+.mobile-filter-header button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.result-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--spacing-m);
+}
+
+.result-card-price {
+  margin-top: auto;
+  margin-bottom: var(--spacing-m);
+  font-size: 1rem;
+}
+
+.result-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  flex: 1;
+  padding: var(--spacing-m);
+}
+
+.result-card-main {
+  display: grid;
+  gap: var(--spacing-s);
+}
+
+.result-card-bottom {
+  margin-top: auto;
+  padding-top: var(--spacing-m);
+  border-top: 1px solid var(--md-sys-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+}
+
+.result-card-price {
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+.result-card-action {
+  width: auto;
+  min-width: 72px;
+  padding: 10px 18px;
+  justify-content: center;
+}
+.search-results-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1500px) {
+  .search-results-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1300px) {
+  .search-results-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 930px) {
+  .search-results-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 930px) {
+  .results-toolbar {
+    display: none;
+  }
+}
+
+@media (max-width: 930px) {
+  .search-layout {
+    display: block;
+  }
+
+  .desktop-filters {
+    display: none;
+  }
+
+  .mobile-search-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-s);
+    margin-bottom: var(--spacing-l);
+  }
+
+  .mobile-search-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+ .search-results-list {
+  grid-template-columns: repeat(1, 1fr);
+}
+}
+
       /* --- التجاوب مع الجوال والشاشات المتوسطة --- */
       @media (max-width: 1100px) {
         .nav-main-row .nav-links {
@@ -610,6 +951,157 @@
           padding: 116px 6% 0;
         }
       }
+      
+      /* ===== Hall Card Only Fix - No Favorite / No Capacity ===== */
+.hall-card.result-card {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
+}
+
+.hall-card.result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+}
+
+.hall-card .result-card-image {
+  height: 188px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--md-sys-color-surface-variant);
+  position: relative;
+}
+
+.hall-type-badge {
+  position: absolute;
+  top: var(--spacing-m);
+  right: var(--spacing-m);
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--md-sys-color-surface) 92%, transparent);
+  color: var(--md-sys-color-primary);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline) 75%, transparent);
+  font-size: 0.85rem;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.hall-card .result-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  flex: 1;
+  padding: var(--spacing-m);
+}
+
+.hall-card .result-card-main {
+  display: grid;
+  gap: var(--spacing-s);
+}
+
+.hall-card .result-card-title {
+  color: var(--md-sys-color-primary);
+  font-size: 1.08rem;
+  font-weight: 900;
+  line-height: 1.45;
+  margin-bottom: 2px;
+}
+
+.hall-card .result-card-type {
+  color: var(--md-sys-color-secondary);
+  font-size: 0.9rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.hall-card .result-card-meta {
+  display: grid;
+  gap: var(--spacing-s);
+  color: var(--md-sys-color-on-surface);
+  font-size: 0.88rem;
+  opacity: 1;
+  margin: 0;
+}
+
+.hall-card .result-card-meta div {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  opacity: 0.78;
+}
+
+.hall-card .result-card-meta .rating-row {
+  color: var(--md-sys-color-secondary);
+  opacity: 1;
+  font-weight: 900;
+}
+
+.hall-card .result-card-bottom {
+  margin-top: auto;
+  padding-top: var(--spacing-m);
+  border-top: 1px solid var(--md-sys-color-outline);
+  display: grid;
+  gap: var(--spacing-m);
+}
+
+.result-card-bottom-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-s);
+  display: block;
+  
+}
+
+.hall-card .availability-badge {
+  min-height: 30px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+  font-size: 0.82rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.availability-badge.available {
+  background: rgba(46, 125, 50, 0.1);
+  color: #2e7d32;
+}
+
+.availability-badge.limited {
+  background: rgba(178, 106, 0, 0.1);
+  color: #b26a00;
+}
+
+.availability-badge.unavailable {
+  background: rgba(211, 47, 47, 0.1);
+  color: #d32f2f;
+}
+
+.hall-card .result-card-price {
+  color: var(--md-sys-color-primary);
+  font-size: 1rem;
+  font-weight: 900;
+  margin-top: 16px;
+  
+}
+
+.hall-card .result-card-action {
+  width: 100%;
+  min-height: 42px;
+  justify-content: center;
+  padding: 10px 18px;
+  align-self: flex-end;
+}
     </style>
   </head>
   <body>
@@ -623,8 +1115,7 @@
           <li><a href="Packages.html" class="active">الباقات</a></li>
           <li><a href="Booking.html">الحجوزات</a></li>
         </ul>
-
-      <div class="search-bar" id="searchBar">
+  <div class="search-bar" id="searchBar">
   <span class="material-symbols-rounded">search</span>
   <input type="text" placeholder="ابحثي ..." id="searchInput" />
   </div>
@@ -751,111 +1242,217 @@
         </ul>
       </div>
     </nav>
+<main class="search-results-page">
 
-    <section class="promo-banner-section">
-      <div class="promo-banner"></div>
-    </section>
+<div class="search-results-container">
 
-    <section class="categories-section">
-      <div class="categories-header">
-        <h2 class="categories-title">الخدمات</h2>
-        <a href="Services.html" class="view-all-link">عرض الكل</a>
+    <header class="search-results-header">
+      <h1>نتائج البحث عن قاعة</h1>
+      <p>وجدنا نتيجتين مناسبة لاختياراتك</p>
+    </header>
+
+    <div class="mobile-search-actions">
+      <button class="btn btn-secondary" id="sortMobileBtn">
+        <span class="material-symbols-rounded">sort</span>
+        ترتيب النتائج
+      </button>
+
+      <button class="btn btn-primary" id="filterMobileBtn">
+        <span class="material-symbols-rounded">tune</span>
+        فلتر متقدم
+      </button>
+    </div>
+
+    <div class="search-layout">
+      <aside class="desktop-filters">
+<div class="filters-panel">
+  <div class="filters-panel-header">
+    <h2>فلترة النتائج</h2>
+    <button type="button" class="filter-reset-btn">مسح الكل</button>
+  </div>
+
+  <div class="filter-group">
+    <label for="filterCity">المدينة</label>
+    <select id="filterCity">
+      <option>كل المدن</option>
+      <option>مكة</option>
+      <option>جدة</option>
+      <option>الرياض</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="filterDistrict">الحي</label>
+    <select id="filterDistrict">
+      <option>كل الأحياء</option>
+      <option>العزيزية</option>
+      <option>الشوقية</option>
+      <option>النسيم</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="filterDate">التاريخ</label>
+    <input type="date" id="filterDate" />
+  </div>
+
+  <div class="filter-group">
+    <label>نطاق السعر</label>
+    <div class="price-row">
+      <input type="number" placeholder="من" />
+      <input type="number" placeholder="إلى" />
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <label for="filterRating">التقييم</label>
+    <select id="filterRating">
+      <option>أي تقييم</option>
+      <option>4 نجوم وأكثر</option>
+      <option>3 نجوم وأكثر</option>
+    </select>
+  </div>
+
+  <button type="button" class="btn btn-secondary location-filter-btn">
+    <span class="material-symbols-rounded">my_location</span>
+    استخدام موقعي الحالي
+  </button>
+</div>      </aside>
+<section class="results-area">
+  <div class="results-toolbar">
+    
+    <p>عرض النتائج حسب التوفر والسعر والتقييم</p>
+
+    <div class="sort-control">
+      <label for="desktopSort">ترتيب حسب</label>
+      <select id="desktopSort">
+        <option value="ratingDesc">الأعلى تقييمًا</option>
+  <option value="ratingDesc">الأقل تقييمًا</option>
+  <option value="">الأعلى سعرًا</option>
+  <option value="priceAsc">الأقل سعرًا</option>
+  <option value="ratingDesc">الأعلى طلباً</option>
+      </select>
+    </div>
+  </div>
+<div class="search-results-list">
+   <article
+  class="result-card hall-card"
+  data-city="مكة"
+  data-district="الشوقية"
+  data-type="قاعة"
+  data-price="12000"
+  data-rating="4.8"
+  data-availability="متاح"
+>
+  <div
+    class="result-card-image"
+    style="background-image: linear-gradient(135deg, rgba(82, 43, 71, 0.25), rgba(177, 148, 112, 0.16)), url('him1.png');"
+  >
+    <span class="hall-type-badge">
+      <span class="material-symbols-rounded">apartment</span>
+      قاعة
+    </span>
+  </div>
+
+  <div class="result-card-content">
+    <div class="result-card-main">
+      <div>
+        <h3 class="result-card-title">قاعة اللؤلؤة الكبرى</h3>
+        <div class="result-card-type">قاعة أفراح</div>
       </div>
 
-      <div class="categories-grid">
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-g-01.jpg&quot;)"
-          ></div>
-          <div class="category-label">قاعات الزفاف والمناسبات</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-p-01.jpg&quot;)"
-          ></div>
-          <div class="category-label">خدمات الإعاشة (البوفيه)</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-mt-01.png&quot;)"
-          ></div>
-          <div class="category-label">المطابخ</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-h-01.jpg&quot;)"
-          ></div>
-          <div class="category-label">الحلويات والضيافة</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-gh-01.png&quot;)"
-          ></div>
-          <div class="category-label">مقدمي الضيافة</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-t-01.jpg&quot;)"
-          ></div>
-          <div class="category-label">التصوير الفوتوغرافي والفيديو</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-c-01.png&quot;)"
-          ></div>
-          <div class="category-label">كوافير وصالونات التجميل</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-cr-01.png&quot;)"
-          ></div>
-          <div class="category-label">كروت الدعوة</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-fr-01.png&quot;)"
-          ></div>
-          <div class="category-label">الفرق الشعبية</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-m-01.png&quot;)"
-          ></div>
-          <div class="category-label">المأذون الشرعي</div>
-        </a>
-      </div>
-    </section>
+      <div class="result-card-meta">
+        <div>
+          <span class="material-symbols-rounded">location_on</span>
+          مكة - الشوقية
+        </div>
 
-    <section class="laylah-packages-preview">
-      <div class="laylah-packages-content">
-        <h2>باقات ليلة</h2>
-
-        <p>
-          اختر ما يناسبك من باقات جاهزة لدينا بسرعة وسهولة، أو صمّم باقتك بنفسك
-          لتحصل على تجربة مخصصة تعكس احتياجاتك بدقة.
-        </p>
-
-        <div class="laylah-packages-actions">
-          <a href="Packages.html#readyPackages" class="btn btn-primary"
-            >استعرض الباقات</a
-          >
-          <a href="Design your package.html" class="btn btn-secondary"
-            >ابدأ التصميم</a
-          >
+        <div class="rating-row">
+          <span class="material-symbols-rounded">star</span>
+          4.8 (126 تقييم)
         </div>
       </div>
-    </section>
+    </div>
 
+    <div class="result-card-bottom">
+      <div class="result-card-bottom-info">
+        <span class="availability-badge available">متاح</span>
+
+        <div class="result-card-price">
+          يبدأ من 12,000 ريال
+        </div>
+      </div>
+
+      <a href="service-provider.html" class="btn btn-primary result-card-action">
+        عرض التفاصيل
+      </a>
+    </div>
+  </div>
+</article>
+
+  <article
+  class="result-card hall-card"
+  data-city="الطائف"
+  data-district="الهدا"
+  data-type="قاعة"
+  data-price="10000"
+  data-rating="4.3"
+  data-availability="غير متاح"
+>
+  <div
+    class="result-card-image"
+    style="background-image: linear-gradient(135deg, rgba(82, 43, 71, 0.25), rgba(177, 148, 112, 0.16)), url('h5im.png');"
+  >
+    <span class="hall-type-badge">
+      <span class="material-symbols-rounded">apartment</span>
+      قاعة
+    </span>
+  </div>
+
+  <div class="result-card-content">
+    <div class="result-card-main">
+      <div>
+        <h3 class="result-card-title">قاعة الورد</h3>
+        <div class="result-card-type">قاعة أفراح</div>
+      </div>
+
+      <div class="result-card-meta">
+        <div>
+          <span class="material-symbols-rounded">location_on</span>
+          الطائف - الهدا
+        </div>
+
+        <div class="rating-row">
+          <span class="material-symbols-rounded">star</span>
+          4.3 (300 تقييم)
+        </div>
+      </div>
+    </div>
+
+    <div class="result-card-bottom">
+      <div class="result-card-bottom-info">
+        <span class="availability-badge unavailable">غير متاح</span>
+
+        <div class="result-card-price">
+          يبدأ من 10,000 ريال
+        </div>
+      </div>
+
+      <a href="service-provider.html" class="btn btn-primary result-card-action">
+        عرض التفاصيل
+      </a>
+    </div>
+  </div>
+</article>
+
+</div>
+    </div>
+
+   
+</section>
+
+</div>
+</main>
     <section class="features">
       <div class="feature-item">
         <span
@@ -886,8 +1483,12 @@
       </div>
     </section>
 
+
     
+  
     
+            
+
     <style> li a {
   text-decoration: none;
   color: inherit;
@@ -954,6 +1555,88 @@
           nav.style.boxShadow = "none";
         }
       };
+      
+      
     </script>
+<script>
+  const mobileFilterToggle = document.getElementById("mobileFilterToggle");
+  const searchFilterCard = document.querySelector(".search-filter-card");
+
+  if (mobileFilterToggle && searchFilterCard) {
+    mobileFilterToggle.addEventListener("click", () => {
+      searchFilterCard.classList.toggle("open");
+      mobileFilterToggle.innerHTML = searchFilterCard.classList.contains("open")
+        ? '<span class="material-symbols-rounded">close</span> إخفاء الفلاتر'
+        : '<span class="material-symbols-rounded">tune</span> عرض الفلاتر';
+    });
+  }
+</script>
+<div class="mobile-filter-overlay" id="mobileFilterOverlay">
+  <div class="mobile-filter-sheet">
+    <div class="mobile-filter-header">
+      <h3>فلتر متقدم</h3>
+      <button type="button" id="closeMobileFilter">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+    </div>
+
+    <div class="mobile-filter-body">
+      <!-- انسخ نفس محتوى filters-panel هنا -->
+      <div class="filter-group">
+        <label>المدينة</label>
+        <select>
+          <option>كل المدن</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>الحي</label>
+        <select>
+          <option>كل الأحياء</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>التاريخ</label>
+        <input type="date" />
+      </div>
+
+      <div class="filter-group">
+        <label>نطاق السعر</label>
+        <div class="price-row">
+          <input type="number" placeholder="من" />
+          <input type="number" placeholder="إلى" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-filter-footer">
+      <button class="btn btn-secondary">إعادة تعيين</button>
+      <button class="btn btn-primary">تطبيق الفلاتر</button>
+    </div>
+  </div>
+</div>
+<script>
+  const filterMobileBtn = document.getElementById("filterMobileBtn");
+  const mobileFilterOverlay = document.getElementById("mobileFilterOverlay");
+  const closeMobileFilter = document.getElementById("closeMobileFilter");
+
+  filterMobileBtn?.addEventListener("click", () => {
+    mobileFilterOverlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+  });
+
+  closeMobileFilter?.addEventListener("click", () => {
+    mobileFilterOverlay.classList.remove("show");
+    document.body.style.overflow = "";
+  });
+
+  mobileFilterOverlay?.addEventListener("click", (e) => {
+    if (e.target === mobileFilterOverlay) {
+      mobileFilterOverlay.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+  });
+</script>
   </body>
 </html>

@@ -1,0 +1,3236 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>نظام تصميم منصة ليلة | التوثيق بعد التعديل</title>
+    <style>
+      :root {
+        --color-primary-plum-700: #522b47;
+        --color-on-primary: #ffffff;
+        --color-secondary-gold-500: #b19470;
+        --color-background-n10: #fcfaf9;
+        --color-surface: #ffffff;
+        --color-surface-variant: #f4eeed;
+        --color-outline: #d1c4bc;
+        --color-text-primary: #1d1b1e;
+        --color-text-secondary: rgba(29, 27, 30, 0.72);
+        --color-success: #2e7d32;
+        --color-error: #d32f2f;
+        --color-warning: #b26a00;
+        --color-info: #1565c0;
+        --color-rating: var(--color-secondary-gold-500);
+
+        --font-family-base: "Tajawal", Arial, sans-serif;
+        --font-family-data:
+          "IBM Plex Sans Arabic", "Tajawal", Arial, sans-serif;
+        --font-display: 40px;
+        --font-headline: 32px;
+        --font-title: 24px;
+        --font-body: 16px;
+        --font-caption: 14px;
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
+        --font-weight-bold: 700;
+        --font-weight-black: 900;
+
+        --space-2: 2px;
+        --space-4: 4px;
+        --space-8: 8px;
+        --space-12: 12px;
+        --space-16: 16px;
+        --space-24: 24px;
+        --space-32: 32px;
+        --space-48: 48px;
+        --space-64: 64px;
+
+        --radius-xs: 4px;
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 28px;
+        --radius-full: 999px;
+
+        --border-width-default: 1px;
+        --border-width-strong: 1.5px;
+        --border-width-emphasis: 2px;
+
+        --shadow-e1: 0 2px 4px rgba(0, 0, 0, 0.05);
+        --shadow-e2: 0 8px 16px rgba(0, 0, 0, 0.08);
+        --shadow-e3: 0 16px 32px rgba(0, 0, 0, 0.12);
+
+        --motion-duration: 300ms;
+        --motion-curve: cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-standard:
+          background-color var(--motion-duration) var(--motion-curve),
+          color var(--motion-duration) var(--motion-curve),
+          border-color var(--motion-duration) var(--motion-curve),
+          box-shadow var(--motion-duration) var(--motion-curve),
+          transform var(--motion-duration) var(--motion-curve),
+          opacity var(--motion-duration) var(--motion-curve);
+
+        --layout-desktop-margin: 80px;
+        --layout-desktop-gutter: 24px;
+        --layout-mobile-margin: 16px;
+        --layout-mobile-gutter: 16px;
+        --layout-content-max: 1280px;
+        --sidebar-width: 320px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-family-base);
+        font-size: var(--font-body);
+        line-height: 1.8;
+        background: var(--color-background-n10);
+        color: var(--color-text-primary);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      code,
+      pre {
+        direction: ltr;
+        text-align: left;
+        font-family: Consolas, Monaco, "Courier New", monospace;
+      }
+
+      .app-shell {
+        display: grid;
+        grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        padding: var(--space-24);
+        background: var(--color-surface);
+        border-left: var(--border-width-default) solid var(--color-outline);
+        box-shadow: var(--shadow-e1);
+      }
+
+      .brand {
+        display: grid;
+        gap: var(--space-8);
+        padding-bottom: var(--space-24);
+        margin-bottom: var(--space-24);
+        border-bottom: var(--border-width-default) solid var(--color-outline);
+      }
+
+      .brand-mark {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-full);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-primary-plum-700);
+        color: var(--color-on-primary);
+        font-weight: var(--font-weight-black);
+        font-size: var(--font-title);
+        box-shadow: var(--shadow-e1);
+      }
+
+      .brand h1 {
+        margin: 0;
+        color: var(--color-primary-plum-700);
+        font-size: 22px;
+        line-height: 1.35;
+        font-weight: var(--font-weight-black);
+      }
+
+      .brand p {
+        margin: 0;
+        color: var(--color-text-secondary);
+        font-size: var(--font-caption);
+      }
+
+      .toc {
+        display: grid;
+        gap: var(--space-4);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .toc a {
+        display: block;
+        padding: var(--space-8) var(--space-12);
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        color: var(--color-text-primary);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-caption);
+        transition: var(--transition-standard);
+      }
+
+      .toc a:hover,
+      .toc a:focus-visible {
+        background: var(--color-surface-variant);
+        color: var(--color-primary-plum-700);
+        outline: none;
+      }
+
+      .main {
+        min-width: 0;
+      }
+
+      .container {
+        max-width: var(--layout-content-max);
+        margin-inline: auto;
+        padding: var(--space-48) var(--layout-desktop-margin) var(--space-64);
+      }
+
+      .hero {
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(177, 148, 112, 0.16),
+            transparent 36%
+          ),
+          var(--color-surface);
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-xl);
+        padding: var(--space-48);
+        box-shadow: var(--shadow-e1);
+        margin-bottom: var(--space-48);
+      }
+
+      .eyebrow {
+        color: var(--color-secondary-gold-500);
+        font-weight: var(--font-weight-black);
+        margin: 0 0 var(--space-8);
+      }
+
+      .hero h2 {
+        margin: 0 0 var(--space-16);
+        color: var(--color-primary-plum-700);
+        font-size: var(--font-display);
+        line-height: 1.25;
+        font-weight: var(--font-weight-black);
+      }
+
+      .hero p {
+        margin: 0;
+        max-width: 860px;
+        color: var(--color-text-secondary);
+        font-size: 18px;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-16);
+        margin-top: var(--space-32);
+      }
+
+      .meta-item {
+        background: var(--color-surface-variant);
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-lg);
+        padding: var(--space-16);
+      }
+
+      .meta-item strong {
+        display: block;
+        color: var(--color-primary-plum-700);
+        font-weight: var(--font-weight-black);
+      }
+
+      .section {
+        margin-bottom: var(--space-64);
+        scroll-margin-top: var(--space-24);
+      }
+
+      .section-header {
+        margin-bottom: var(--space-24);
+      }
+
+      .section-header h2 {
+        margin: 0 0 var(--space-8);
+        color: var(--color-primary-plum-700);
+        font-size: var(--font-headline);
+        line-height: 1.35;
+        font-weight: var(--font-weight-black);
+      }
+
+      .section-header p {
+        margin: 0;
+        color: var(--color-text-secondary);
+      }
+
+      .card {
+        background: var(--color-surface);
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-e1);
+        padding: var(--space-24);
+        margin-bottom: var(--space-16);
+      }
+
+      .card h3 {
+        margin: 0 0 var(--space-12);
+        color: var(--color-primary-plum-700);
+        font-size: var(--font-title);
+        line-height: 1.4;
+        font-weight: var(--font-weight-black);
+      }
+
+      .card h4 {
+        margin: var(--space-24) 0 var(--space-8);
+        color: var(--color-primary-plum-700);
+        font-size: 18px;
+        font-weight: var(--font-weight-black);
+      }
+
+      .card p {
+        margin-top: 0;
+      }
+
+      .muted {
+        color: var(--color-text-secondary);
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-8);
+        margin-top: var(--space-16);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: var(--space-4) var(--space-12);
+        border-radius: var(--radius-full);
+        background: var(--color-surface-variant);
+        color: var(--color-primary-plum-700);
+        font-size: var(--font-caption);
+        font-weight: var(--font-weight-bold);
+        border: var(--border-width-default) solid transparent;
+      }
+
+      .tag.proposed {
+        border-color: var(--color-secondary-gold-500);
+        background: rgba(177, 148, 112, 0.12);
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-lg);
+        background: var(--color-surface);
+        margin-bottom: var(--space-24);
+      }
+
+      table {
+        width: 100%;
+        min-width: 760px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: var(--space-12) var(--space-16);
+        text-align: right;
+        vertical-align: top;
+        border-bottom: var(--border-width-default) solid var(--color-outline);
+      }
+
+      th {
+        background: var(--color-primary-plum-700);
+        color: var(--color-on-primary);
+        font-weight: var(--font-weight-black);
+        white-space: nowrap;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      .swatch-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--space-16);
+      }
+
+      .swatch {
+        overflow: hidden;
+        background: var(--color-surface);
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-e1);
+      }
+
+      .swatch-color {
+        height: 92px;
+        border-bottom: var(--border-width-default) solid var(--color-outline);
+      }
+
+      .swatch-body {
+        padding: var(--space-16);
+      }
+
+      .swatch-body strong {
+        display: block;
+        color: var(--color-primary-plum-700);
+        font-weight: var(--font-weight-black);
+      }
+
+      .swatch-body code {
+        display: inline-block;
+        margin-top: var(--space-4);
+        direction: ltr;
+        color: var(--color-text-secondary);
+      }
+
+      .example-zone {
+        display: grid;
+        gap: var(--space-16);
+        padding: var(--space-24);
+        background: var(--color-surface-variant);
+        border-radius: var(--radius-lg);
+        border: var(--border-width-default) solid var(--color-outline);
+        margin: var(--space-16) 0;
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-12);
+        align-items: center;
+      }
+
+      .btn {
+        min-height: 44px;
+        padding: var(--space-12) var(--space-32);
+        border-radius: var(--radius-full);
+        font-family: var(--font-family-base);
+        font-size: var(--font-body);
+        font-weight: var(--font-weight-bold);
+        line-height: 1;
+        border: var(--border-width-default) solid transparent;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-8);
+        cursor: pointer;
+        text-decoration: none;
+        transition: var(--transition-standard);
+      }
+
+      .btn-primary {
+        background: var(--color-primary-plum-700);
+        color: var(--color-on-primary);
+        box-shadow: var(--shadow-e1);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-e2);
+      }
+
+      .btn-secondary {
+        background: var(--color-secondary-gold-500);
+        color: var(--color-primary-plum-700);
+        box-shadow: var(--shadow-e1);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--color-primary-plum-700);
+        border-color: var(--color-outline);
+      }
+
+      .btn-text {
+        min-height: 44px;
+        border: none;
+        background: transparent;
+        color: var(--color-primary-plum-700);
+        font-weight: var(--font-weight-black);
+        padding: var(--space-8) var(--space-12);
+        border-radius: var(--radius-full);
+      }
+
+      .btn-text:hover,
+      .btn-outline:hover {
+        background: var(--color-surface-variant);
+      }
+
+      .btn-danger {
+        background: var(--color-error);
+        color: var(--color-on-primary);
+      }
+
+      .btn:disabled,
+      .btn[aria-disabled="true"] {
+        opacity: 0.48;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .field {
+        display: grid;
+        gap: var(--space-8);
+      }
+
+      .field label {
+        color: var(--color-text-primary);
+        font-weight: var(--font-weight-bold);
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        min-height: 44px;
+        padding: var(--space-12) var(--space-16);
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-md);
+        background: var(--color-surface);
+        color: var(--color-text-primary);
+        font-family: var(--font-family-base);
+        font-size: var(--font-body);
+        transition: var(--transition-standard);
+      }
+
+      .field textarea {
+        min-height: 112px;
+        resize: vertical;
+      }
+
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus,
+      .search-pill:focus-within,
+      .btn:focus-visible,
+      .interactive-card:focus-visible {
+        outline: none;
+        border-color: var(--color-primary-plum-700);
+        box-shadow: 0 0 0 4px rgba(82, 43, 71, 0.12);
+      }
+
+      .field .helper {
+        color: var(--color-text-secondary);
+        font-size: var(--font-caption);
+      }
+
+      .field .error-message {
+        display: none;
+        color: var(--color-error);
+        font-size: var(--font-caption);
+        font-weight: var(--font-weight-bold);
+      }
+
+      .field.error input,
+      .field.error select,
+      .field.error textarea {
+        border-color: var(--color-error);
+      }
+
+      .field.error .error-message {
+        display: block;
+      }
+
+      .component-card {
+        display: grid;
+        gap: var(--space-12);
+        background: var(--color-surface);
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-lg);
+        padding: var(--space-24);
+        box-shadow: var(--shadow-e1);
+      }
+
+      .interactive-card {
+        background: var(--color-surface);
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-e1);
+        padding: var(--space-24);
+        transition: var(--transition-standard);
+      }
+
+      .interactive-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-e2);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: var(--space-4) var(--space-12);
+        border-radius: var(--radius-full);
+        background: var(--color-surface-variant);
+        color: var(--color-primary-plum-700);
+        font-size: var(--font-caption);
+        font-weight: var(--font-weight-bold);
+      }
+
+      .badge-success {
+        background: rgba(46, 125, 50, 0.12);
+        color: var(--color-success);
+      }
+
+      .badge-error {
+        background: rgba(211, 47, 47, 0.12);
+        color: var(--color-error);
+      }
+
+      .badge-warning {
+        background: rgba(178, 106, 0, 0.12);
+        color: var(--color-warning);
+      }
+
+      .badge-info {
+        background: rgba(21, 101, 192, 0.12);
+        color: var(--color-info);
+      }
+
+      .alert {
+        display: grid;
+        gap: var(--space-4);
+        border-radius: var(--radius-lg);
+        border: var(--border-width-default) solid var(--color-outline);
+        padding: var(--space-16);
+        background: var(--color-surface);
+      }
+
+      .alert strong {
+        color: var(--color-primary-plum-700);
+      }
+
+      .alert-success {
+        border-color: var(--color-success);
+        background: rgba(46, 125, 50, 0.08);
+      }
+
+      .alert-error {
+        border-color: var(--color-error);
+        background: rgba(211, 47, 47, 0.08);
+      }
+
+      .search-pill {
+        min-height: 44px;
+        background: var(--color-surface-variant);
+        border: var(--border-width-default) solid transparent;
+        border-radius: var(--radius-full);
+        padding: var(--space-8) var(--space-16);
+        display: flex;
+        align-items: center;
+        gap: var(--space-8);
+        transition: var(--transition-standard);
+        max-width: 420px;
+      }
+
+      .search-pill input {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        outline: 0;
+        font-family: var(--font-family-base);
+        font-size: var(--font-caption);
+        color: var(--color-text-primary);
+      }
+
+      .package-stepper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-16);
+        padding-bottom: var(--space-24);
+        margin-bottom: var(--space-24);
+        border-bottom: var(--border-width-default) solid var(--color-outline);
+      }
+
+      .step-item {
+        display: grid;
+        justify-items: center;
+        gap: var(--space-8);
+        width: 80px;
+        border: 0;
+        background: transparent;
+        color: var(--color-text-primary);
+        font-family: var(--font-family-base);
+        cursor: pointer;
+      }
+
+      .step-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-full);
+        border: var(--border-width-emphasis) solid
+          var(--color-secondary-gold-500);
+        background: var(--color-surface);
+        color: var(--color-primary-plum-700);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: var(--font-weight-black);
+        transition: var(--transition-standard);
+      }
+
+      .step-label {
+        font-size: 12px;
+        line-height: 1.3;
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text-secondary);
+        text-align: center;
+      }
+
+      .step-item.active .step-circle {
+        background: var(--color-primary-plum-700);
+        border-color: var(--color-primary-plum-700);
+        color: var(--color-on-primary);
+      }
+
+      .step-item.completed .step-circle {
+        background: var(--color-secondary-gold-500);
+        border-color: var(--color-secondary-gold-500);
+        color: var(--color-on-primary);
+      }
+
+      .step-item.active .step-label {
+        color: var(--color-primary-plum-700);
+      }
+
+      .modal-demo {
+        position: relative;
+        min-height: 220px;
+        display: grid;
+        place-items: center;
+        background: rgba(29, 27, 28, 0.32);
+        border-radius: var(--radius-lg);
+        padding: var(--space-24);
+      }
+
+      .modal-card {
+        width: min(520px, 100%);
+        background: var(--color-surface);
+        border: var(--border-width-default) solid var(--color-outline);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-e3);
+        padding: var(--space-24);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-16);
+        align-items: center;
+        margin-bottom: var(--space-16);
+      }
+
+      .modal-header h4 {
+        margin: 0;
+        color: var(--color-primary-plum-700);
+        font-size: 20px;
+        font-weight: var(--font-weight-black);
+      }
+
+      .icon-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-full);
+        border: var(--border-width-default) solid var(--color-outline);
+        background: var(--color-surface);
+        color: var(--color-primary-plum-700);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .price,
+      .num,
+      .data-value,
+      input[type="number"],
+      input[type="tel"] {
+        font-family: var(--font-family-data);
+      }
+
+      .price {
+        color: var(--color-primary-plum-700);
+        font-weight: var(--font-weight-black);
+        font-size: 22px;
+      }
+
+      .rating {
+        color: var(--color-rating);
+        font-weight: var(--font-weight-black);
+      }
+
+      .code-block {
+        position: relative;
+        margin: var(--space-16) 0;
+        padding: var(--space-16);
+        background: #211c20;
+        color: #ffffff;
+        border-radius: var(--radius-lg);
+        overflow-x: auto;
+        box-shadow: var(--shadow-e1);
+        border: var(--border-width-default) solid rgba(255, 255, 255, 0.08);
+        white-space: pre;
+        line-height: 1.6;
+      }
+
+      .print-note {
+        display: none;
+      }
+
+      .status-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--space-16);
+      }
+
+      .do-dont {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-16);
+      }
+
+      .do,
+      .dont {
+        border-radius: var(--radius-lg);
+        padding: var(--space-16);
+        border: var(--border-width-default) solid var(--color-outline);
+        background: var(--color-surface);
+      }
+
+      .do strong {
+        color: var(--color-success);
+      }
+
+      .dont strong {
+        color: var(--color-error);
+      }
+
+      .page-heading-demo {
+        max-width: 820px;
+      }
+
+      .page-heading-demo h3 {
+        margin: 0 0 var(--space-16);
+        color: var(--color-primary-plum-700);
+        font-size: var(--font-headline);
+        font-weight: var(--font-weight-black);
+        line-height: 1.3;
+      }
+
+      .page-heading-demo p {
+        margin: 0;
+        color: var(--color-text-secondary);
+      }
+
+      .trust-strip-demo {
+        background: var(--color-primary-plum-700);
+        color: var(--color-on-primary);
+        border-radius: var(--radius-lg);
+        padding: var(--space-32);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-24);
+        text-align: center;
+      }
+
+      .trust-strip-demo strong {
+        display: block;
+        color: var(--color-on-primary);
+        font-weight: var(--font-weight-black);
+      }
+
+      .trust-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--color-secondary-gold-500);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--space-8);
+        font-weight: var(--font-weight-black);
+      }
+
+      .checklist {
+        display: grid;
+        gap: var(--space-12);
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .checklist li {
+        display: flex;
+        gap: var(--space-12);
+        align-items: flex-start;
+        padding: var(--space-12);
+        border-radius: var(--radius-lg);
+        background: var(--color-surface);
+        border: var(--border-width-default) solid var(--color-outline);
+      }
+
+      .check {
+        flex: 0 0 auto;
+        width: 24px;
+        height: 24px;
+        border-radius: var(--radius-full);
+        background: var(--color-surface-variant);
+        border: var(--border-width-default) solid var(--color-outline);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary-plum-700);
+        font-size: 12px;
+        font-weight: var(--font-weight-black);
+      }
+
+      @media (max-width: 1100px) {
+        .app-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: relative;
+          height: auto;
+          border-left: 0;
+          border-bottom: var(--border-width-default) solid var(--color-outline);
+        }
+
+        .toc {
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        }
+
+        .container {
+          padding-inline: var(--space-32);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          padding: var(--space-24) var(--layout-mobile-margin) var(--space-48);
+        }
+
+        .hero {
+          padding: var(--space-24);
+        }
+
+        .hero h2 {
+          font-size: var(--font-headline);
+        }
+
+        .meta-grid,
+        .do-dont,
+        .trust-strip-demo {
+          grid-template-columns: 1fr;
+        }
+
+        table {
+          min-width: 680px;
+        }
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+        }
+
+        .app-shell {
+          display: block;
+        }
+
+        .sidebar {
+          display: none;
+        }
+
+        .container {
+          max-width: none;
+          padding: 0;
+        }
+
+        .section {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        .hero,
+        .card,
+        .table-wrap,
+        .component-card,
+        .interactive-card {
+          box-shadow: none;
+        }
+
+        .print-note {
+          display: block;
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-24);
+        }
+
+        a {
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="فهرس نظام التصميم">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">ل</div>
+          <h1>نظام تصميم منصة ليلة</h1>
+          <p>توثيق بعد التعديل — مبني فقط على سياق المحادثة الحالي.</p>
+        </div>
+
+        <nav>
+          <ol class="toc">
+            <li><a href="#cover">الغلاف</a></li>
+            <li><a href="#overview">نظرة عامة</a></li>
+            <li><a href="#identity">الهوية البصرية</a></li>
+            <li><a href="#tokens">Design Tokens</a></li>
+            <li><a href="#colors">نظام الألوان</a></li>
+            <li><a href="#typography">الخطوط</a></li>
+            <li><a href="#spacing-layout">المسافات والتخطيط</a></li>
+            <li><a href="#radius-border-shadow">الحواف والحدود والظلال</a></li>
+            <li><a href="#icons">الأيقونات</a></li>
+            <li><a href="#components">مكتبة المكونات</a></li>
+            <li><a href="#states">حالات المكونات</a></li>
+            <li><a href="#forms">النماذج والحقول</a></li>
+            <li><a href="#data-display">عرض البيانات</a></li>
+            <li><a href="#motion">الحركة والتفاعل</a></li>
+            <li><a href="#accessibility">سهولة الوصول</a></li>
+            <li><a href="#undocumented">متوافق وغير موثق سابقاً</a></li>
+            <li><a href="#note-types">أنواع الملاحظات</a></li>
+            <li><a href="#change-log">سجل التعديلات</a></li>
+            <li><a href="#checklist">Checklist الاعتماد</a></li>
+            <li><a href="#export">تصدير Tokens</a></li>
+            <li><a href="#closing">الخاتمة</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <div class="container">
+          <p class="print-note">
+            نسخة طباعة من توثيق نظام تصميم منصة ليلة — بعد التعديل.
+          </p>
+
+          <section id="cover" class="hero">
+            <p class="eyebrow">Design System Documentation</p>
+            <h2>نظام تصميم واجهات منصة ليلة</h2>
+            <p>
+              هذا الملف يوثق نظام التصميم المعدّل الموجود في سياق المحادثة فقط،
+              بما يشمل الهوية، التوكنز، المكونات، الحالات، الملاحظات، والعناصر
+              المتوافقة التي تحتاج توثيقاً أو اعتماداً. لا يقدم هذا الملف نظاماً
+              جديداً ولا يستبدل القيم الموجودة.
+            </p>
+
+            <div class="meta-grid">
+              <div class="meta-item">
+                <strong>اسم النظام</strong>
+                <span>نظام تصميم منصة ليلة</span>
+              </div>
+              <div class="meta-item">
+                <strong>آخر حالة للتوثيق</strong>
+                <span>بعد التعديل</span>
+              </div>
+              <div class="meta-item">
+                <strong>النطاق</strong>
+                <span>توثيق نظام UI فقط، وليس توثيقاً تقنياً خلفياً.</span>
+              </div>
+            </div>
+          </section>
+
+          <section id="overview" class="section">
+            <div class="section-header">
+              <h2>1. نظرة عامة</h2>
+              <p>الهدف والمبادئ والنطاق التشغيلي لنظام التصميم.</p>
+            </div>
+
+            <div class="card">
+              <h3>هدف النظام</h3>
+              <p>
+                توحيد واجهات منصة ليلة لتكون راقية، هادئة، خبيرة، وداعمة،
+                ومناسبة لمنصة حفلات وزواج سعودية. يضمن النظام اتساق الألوان،
+                الخطوط، المسافات، الحواف، الظلال، المكونات، والحالات التفاعلية.
+              </p>
+
+              <h4>المبادئ العامة</h4>
+              <div class="tag-row">
+                <span class="tag">الهدوء البصري</span>
+                <span class="tag">الفخامة بدون مبالغة</span>
+                <span class="tag">وضوح الأسعار والبيانات</span>
+                <span class="tag">دعم RTL</span>
+                <span class="tag">قابلية الوصول</span>
+                <span class="tag">استخدام Tokens قبل القيم المباشرة</span>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>البند</th>
+                    <th>داخل نطاق النظام</th>
+                    <th>خارج نطاق النظام</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>UI</td>
+                    <td>
+                      الألوان، الخطوط، المكونات، الحالات، التخطيط، التباين،
+                      أنماط عرض البيانات.
+                    </td>
+                    <td>
+                      منطق المنتج، منطق قواعد البيانات، الأداء البرمجي، التسويق
+                      غير المرتبط بواجهة المستخدم.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>UX المرتبط بالنظام</td>
+                    <td>
+                      وضوح التركيز، حجم النقر، ظهور الأخطاء أسفل الحقول، عدم
+                      الاعتماد على اللون وحده.
+                    </td>
+                    <td>
+                      استراتيجية الرحلة الكاملة أو قرار المنتج ما لم يؤثر مباشرة
+                      على نظام التصميم.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>التوثيق</td>
+                    <td>
+                      توثيق القواعد الموجودة والمقترحات المذكورة في السياق.
+                    </td>
+                    <td>اختراع مكونات أو قيم جديدة غير مذكورة.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="identity" class="section">
+            <div class="section-header">
+              <h2>2. الهوية البصرية</h2>
+              <p>الشخصية والنبرة والمبادئ البصرية المعتمدة.</p>
+            </div>
+
+            <div class="card">
+              <h3>الشخصية</h3>
+              <p>
+                واجهات راقية، هادئة، خبيرة، داعمة، ومناسبة لمنصة حفلات/زواج
+                سعودية.
+              </p>
+
+              <h4>النبرة</h4>
+              <p>
+                داعمة وواضحة ومباشرة، بدون مبالغة بصرية أو تشتيت. التفاصيل
+                الذهبية تستخدم للتأكيد والإحساس بالفخامة، بينما Plum هو لون
+                الثقة والهوية الرئيسية.
+              </p>
+
+              <h4>المبادئ البصرية</h4>
+              <ul>
+                <li>Primary Plum للهوية والإجراءات الأساسية.</li>
+                <li>
+                  Secondary Gold للتفاصيل، التقييمات، العلامات الثانوية،
+                  والتأكيدات الداعمة.
+                </li>
+                <li>
+                  الأسطح البيضاء والخلفيات القريبة من n-10 للحفاظ على الهدوء.
+                </li>
+                <li>الظلال خفيفة ومتدرجة حسب أهمية العنصر.</li>
+                <li>الحواف مستديرة وواضحة، بدون زوايا حادة غير مبررة.</li>
+              </ul>
+
+              <h4>قواعد العلامة أو الأسلوب</h4>
+              <p>
+                غير محدد في النظام الحالي خارج القواعد البصرية المذكورة أعلاه.
+              </p>
+            </div>
+          </section>
+
+          <section id="tokens" class="section">
+            <div class="section-header">
+              <h2>3. Design Tokens</h2>
+              <p>
+                كل القيم الموثقة أو المقترحة في النظام المعدّل. لا تحتوي الجداول
+                على قيم جديدة خارج السياق.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Color Tokens</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>القيمة</th>
+                      <th>الاستخدام</th>
+                      <th>الحالة</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>--color-primary-plum-700</code></td>
+                      <td><code>#522b47</code></td>
+                      <td>Primary، العناوين، الأزرار الأساسية.</td>
+                      <td>معتمد</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-on-primary</code></td>
+                      <td><code>#ffffff</code></td>
+                      <td>النص فوق Primary.</td>
+                      <td>معتمد</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-secondary-gold-500</code></td>
+                      <td><code>#b19470</code></td>
+                      <td>Secondary، التقييمات، التفاصيل الداعمة.</td>
+                      <td>معتمد</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-background-n10</code></td>
+                      <td><code>#fcfaf9</code></td>
+                      <td>الخلفية العامة.</td>
+                      <td>معتمد</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-surface</code></td>
+                      <td><code>#ffffff</code></td>
+                      <td>البطاقات والنوافذ والأسطح.</td>
+                      <td>معتمد</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-surface-variant</code></td>
+                      <td><code>#f4eeed</code></td>
+                      <td>خلفيات ثانوية وحقول البحث والبادجات.</td>
+                      <td>معتمد</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-outline</code></td>
+                      <td><code>#d1c4bc</code></td>
+                      <td>الحدود والفواصل.</td>
+                      <td>معتمد</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-text-primary</code></td>
+                      <td><code>#1d1b1e</code></td>
+                      <td>النص الأساسي.</td>
+                      <td>معتمد</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-text-secondary</code></td>
+                      <td><code>rgba(29, 27, 30, 0.72)</code></td>
+                      <td>النص الثانوي.</td>
+                      <td>مقترح للتوثيق وليس قاعدة أصلية منفصلة.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-success</code></td>
+                      <td><code>#2e7d32</code></td>
+                      <td>حالات النجاح.</td>
+                      <td>مذكور في النظام المعدّل.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-error</code></td>
+                      <td><code>#d32f2f</code></td>
+                      <td>الأخطاء والحذف والتنبيهات الحرجة.</td>
+                      <td>مذكور في النظام المعدّل.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-warning</code></td>
+                      <td><code>#b26a00</code></td>
+                      <td>التحذير.</td>
+                      <td>مقترح داخل النظام المعدّل.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-info</code></td>
+                      <td><code>#1565c0</code></td>
+                      <td>المعلومات.</td>
+                      <td>مقترح داخل النظام المعدّل.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--color-rating</code></td>
+                      <td><code>var(--color-secondary-gold-500)</code></td>
+                      <td>التقييمات.</td>
+                      <td>مقترح للتوحيد.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>Typography Tokens</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>القيمة</th>
+                      <th>الاستخدام</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>--font-family-base</code></td>
+                      <td><code>Tajawal</code></td>
+                      <td>الخط الأساسي لكل الواجهة.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--font-family-data</code></td>
+                      <td><code>IBM Plex Sans Arabic</code></td>
+                      <td>
+                        الأرقام، الأسعار، البيانات المالية، وأرقام التواصل.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>--font-display</code></td>
+                      <td><code>40px</code></td>
+                      <td>Display / العناوين الكبرى.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--font-headline</code></td>
+                      <td><code>32px</code></td>
+                      <td>Headline / رؤوس الأقسام.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--font-title</code></td>
+                      <td><code>24px</code></td>
+                      <td>Title / عناوين البطاقات والمكونات.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--font-body</code></td>
+                      <td><code>16px</code></td>
+                      <td>النص الأساسي.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--font-caption</code></td>
+                      <td><code>14px</code></td>
+                      <td>النصوص الصغيرة والمساعدات.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>Spacing Tokens</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Token</th>
+                      <th>القيمة</th>
+                      <th>الاستخدام</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>--space-2</code></td>
+                      <td><code>2px</code></td>
+                      <td>فروق دقيقة جداً.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--space-4</code></td>
+                      <td><code>4px</code></td>
+                      <td>فواصل صغيرة جداً.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--space-8</code></td>
+                      <td><code>8px</code></td>
+                      <td>gap داخلي صغير.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--space-12</code></td>
+                      <td><code>12px</code></td>
+                      <td>padding للحقول والأزرار الصغيرة.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--space-16</code></td>
+                      <td><code>16px</code></td>
+                      <td>gap قياسي داخلي.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--space-24</code></td>
+                      <td><code>24px</code></td>
+                      <td>padding البطاقات والأقسام الفرعية.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--space-32</code></td>
+                      <td><code>32px</code></td>
+                      <td>gap كبير / padding موسع.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--space-48</code></td>
+                      <td><code>48px</code></td>
+                      <td>مسافات بين مجموعات كبيرة.</td>
+                    </tr>
+                    <tr>
+                      <td><code>--space-64</code></td>
+                      <td><code>64px</code></td>
+                      <td>مسافة بين الأقسام الكبرى.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>Radius / Border / Shadow / Motion Tokens</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>الفئة</th>
+                      <th>Token</th>
+                      <th>القيمة</th>
+                      <th>الاستخدام</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Radius</td>
+                      <td><code>--radius-xs</code></td>
+                      <td><code>4px</code></td>
+                      <td>تفاصيل صغيرة.</td>
+                    </tr>
+                    <tr>
+                      <td>Radius</td>
+                      <td><code>--radius-sm</code></td>
+                      <td><code>8px</code></td>
+                      <td>عناصر صغيرة.</td>
+                    </tr>
+                    <tr>
+                      <td>Radius</td>
+                      <td><code>--radius-md</code></td>
+                      <td><code>12px</code></td>
+                      <td>الحقول وعناصر الإدخال.</td>
+                    </tr>
+                    <tr>
+                      <td>Radius</td>
+                      <td><code>--radius-lg</code></td>
+                      <td><code>16px</code></td>
+                      <td>البطاقات والنوافذ الصغيرة.</td>
+                    </tr>
+                    <tr>
+                      <td>Radius</td>
+                      <td><code>--radius-xl</code></td>
+                      <td><code>28px</code></td>
+                      <td>بطاقات بارزة / أغلفة.</td>
+                    </tr>
+                    <tr>
+                      <td>Radius</td>
+                      <td><code>--radius-full</code></td>
+                      <td><code>999px</code></td>
+                      <td>أزرار pill ودوائر كاملة.</td>
+                    </tr>
+                    <tr>
+                      <td>Border</td>
+                      <td><code>--border-width-default</code></td>
+                      <td><code>1px</code></td>
+                      <td>حدود قياسية.</td>
+                    </tr>
+                    <tr>
+                      <td>Border</td>
+                      <td><code>--border-width-strong</code></td>
+                      <td><code>1.5px</code></td>
+                      <td>تركيز حقول أو Select.</td>
+                    </tr>
+                    <tr>
+                      <td>Border</td>
+                      <td><code>--border-width-emphasis</code></td>
+                      <td><code>2px</code></td>
+                      <td>حواف بارزة مثل Stepper.</td>
+                    </tr>
+                    <tr>
+                      <td>Shadow</td>
+                      <td><code>--shadow-e1</code></td>
+                      <td><code>0 2px 4px rgba(0,0,0,.05)</code></td>
+                      <td>بطاقات عادية.</td>
+                    </tr>
+                    <tr>
+                      <td>Shadow</td>
+                      <td><code>--shadow-e2</code></td>
+                      <td><code>0 8px 16px rgba(0,0,0,.08)</code></td>
+                      <td>تفاعل أو ارتفاع متوسط.</td>
+                    </tr>
+                    <tr>
+                      <td>Shadow</td>
+                      <td><code>--shadow-e3</code></td>
+                      <td><code>0 16px 32px rgba(0,0,0,.12)</code></td>
+                      <td>Modals والعناصر البارزة.</td>
+                    </tr>
+                    <tr>
+                      <td>Motion</td>
+                      <td><code>--motion-duration</code></td>
+                      <td><code>300ms</code></td>
+                      <td>مدة الانتقال القياسية.</td>
+                    </tr>
+                    <tr>
+                      <td>Motion</td>
+                      <td><code>--motion-curve</code></td>
+                      <td><code>cubic-bezier(0.4, 0, 0.2, 1)</code></td>
+                      <td>منحنى الحركة القياسي.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section id="colors" class="section">
+            <div class="section-header">
+              <h2>4. نظام الألوان</h2>
+              <p>Swatches بصرية للألوان الموجودة في النظام المعدّل فقط.</p>
+            </div>
+
+            <h3>Brand Colors</h3>
+            <div class="swatch-grid">
+              <div class="swatch">
+                <div class="swatch-color" style="background: #522b47"></div>
+                <div class="swatch-body">
+                  <strong>Primary Plum 700</strong>
+                  <code>#522b47</code>
+                  <p class="muted">
+                    Primary، الأزرار الأساسية، العناوين، الهوية. تباينه جيد مع
+                    الأبيض.
+                  </p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #b19470"></div>
+                <div class="swatch-body">
+                  <strong>Secondary Gold 500</strong>
+                  <code>#b19470</code>
+                  <p class="muted">
+                    Secondary، التفاصيل، التقييمات، التأكيدات. لا يستخدم كنص
+                    صغير فوق الأبيض إلا بعد فحص التباين.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h3>Surface Colors</h3>
+            <div class="swatch-grid">
+              <div class="swatch">
+                <div class="swatch-color" style="background: #fcfaf9"></div>
+                <div class="swatch-body">
+                  <strong>Background n-10</strong>
+                  <code>#fcfaf9</code>
+                  <p class="muted">الخلفية العامة الهادئة.</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #ffffff"></div>
+                <div class="swatch-body">
+                  <strong>Surface</strong>
+                  <code>#ffffff</code>
+                  <p class="muted">البطاقات، النوافذ، الجداول، الحقول.</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #f4eeed"></div>
+                <div class="swatch-body">
+                  <strong>Surface Variant</strong>
+                  <code>#f4eeed</code>
+                  <p class="muted">
+                    البادجات، خلفيات الحقول الخفيفة، البحث، المساحات الثانوية.
+                  </p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #d1c4bc"></div>
+                <div class="swatch-body">
+                  <strong>Outline</strong>
+                  <code>#d1c4bc</code>
+                  <p class="muted">الحدود والفواصل.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3>Semantic Colors</h3>
+            <div class="swatch-grid">
+              <div class="swatch">
+                <div class="swatch-color" style="background: #2e7d32"></div>
+                <div class="swatch-body">
+                  <strong>Success</strong>
+                  <code>#2e7d32</code>
+                  <p class="muted">
+                    حالات النجاح فقط. لا يعتمد عليه وحده دون نص أو أيقونة.
+                  </p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #d32f2f"></div>
+                <div class="swatch-body">
+                  <strong>Error</strong>
+                  <code>#d32f2f</code>
+                  <p class="muted">الأخطاء والحذف والحالات الحرجة.</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #b26a00"></div>
+                <div class="swatch-body">
+                  <strong>Warning</strong>
+                  <code>#b26a00</code>
+                  <p class="muted">مقترح داخل النظام المعدّل للتحذيرات.</p>
+                </div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background: #1565c0"></div>
+                <div class="swatch-body">
+                  <strong>Info</strong>
+                  <code>#1565c0</code>
+                  <p class="muted">مقترح داخل النظام المعدّل للمعلومات.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="typography" class="section">
+            <div class="section-header">
+              <h2>5. الخطوط</h2>
+              <p>توثيق الخطوط والأحجام والأوزان وقواعد استخدامها.</p>
+            </div>
+
+            <div class="card">
+              <h3>الخطوط المعتمدة</h3>
+              <ul>
+                <li><strong>Tajawal:</strong> الخط الأساسي للواجهة.</li>
+                <li>
+                  <strong>IBM Plex Sans Arabic:</strong> للأرقام، الأسعار، أرقام
+                  التواصل، والبيانات المالية عند الحاجة.
+                </li>
+              </ul>
+
+              <h4>أحجام النصوص</h4>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>النمط</th>
+                      <th>الحجم</th>
+                      <th>الاستخدام</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Display</td>
+                      <td><code>40px</code></td>
+                      <td>العناوين الكبرى.</td>
+                    </tr>
+                    <tr>
+                      <td>Headline</td>
+                      <td><code>32px</code></td>
+                      <td>رؤوس الأقسام.</td>
+                    </tr>
+                    <tr>
+                      <td>Title</td>
+                      <td><code>24px</code></td>
+                      <td>عناوين البطاقات والمكونات.</td>
+                    </tr>
+                    <tr>
+                      <td>Body</td>
+                      <td><code>16px</code></td>
+                      <td>النص الأساسي.</td>
+                    </tr>
+                    <tr>
+                      <td>Caption</td>
+                      <td><code>14px</code></td>
+                      <td>مساعدات، ملاحظات، رسائل صغيرة.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4>الأوزان</h4>
+              <p>
+                المذكور في السياق: 400، 500، 700، 900. الاستخدام التفصيلي لكل
+                وزن غير محدد بالكامل في النظام الحالي، لكن العناوين تستخدم
+                غالباً 900، والأزرار 700 أو 800، والنص الأساسي 400.
+              </p>
+
+              <h4>المحاذاة وقواعد القراءة</h4>
+              <p>
+                الواجهة عربية RTL. النصوص الأساسية بمحاذاة يمين افتراضياً. يمكن
+                استخدام المحاذاة الوسطية في البطاقات الترويجية أو حالات النجاح
+                عند الحاجة. قواعد طول السطر غير محددة في النظام الحالي.
+              </p>
+
+              <div class="example-zone">
+                <p class="eyebrow">مثال Typography</p>
+                <h3
+                  style="
+                    font-size: var(--font-headline);
+                    margin: 0;
+                    color: var(--color-primary-plum-700);
+                  "
+                >
+                  عنوان قسم بخط Tajawal
+                </h3>
+                <p class="muted">
+                  نص وصفي يدعم القرار ويستخدم لون النص الثانوي.
+                </p>
+                <p class="price">12,000 ر.س</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="spacing-layout" class="section">
+            <div class="section-header">
+              <h2>6. المسافات والتخطيط</h2>
+              <p>Spacing scale، الهوامش، Grid، وقواعد RTL.</p>
+            </div>
+
+            <div class="card">
+              <h3>Spacing Scale</h3>
+              <p>
+                القيم المعتمدة: 2, 4, 8, 12, 16, 24, 32, 48, 64px. لا تستخدم
+                مسافات عشوائية خارج النظام إلا بسبب قوي وموثق.
+              </p>
+
+              <h4>قواعد الهوامش والشبكة</h4>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>السياق</th>
+                      <th>القاعدة</th>
+                      <th>ملاحظات</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Desktop</td>
+                      <td>شبكة 12 عموداً، هوامش 80px، Gutter 24px.</td>
+                      <td>
+                        استخدام 6% ظهر في بعض الواجهات لكنه يحتاج استبدال أو
+                        توثيق كحالة Responsive.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Mobile</td>
+                      <td>شبكة 4 أعمدة، هوامش 16px، Gutter 16px.</td>
+                      <td>يجب الحفاظ على مناطق النقر 44x44px.</td>
+                    </tr>
+                    <tr>
+                      <td>RTL</td>
+                      <td>
+                        الاتجاه الأساسي RTL، المحاذاة يمين، وترتيب الخطوات من
+                        اليمين إلى اليسار.
+                      </td>
+                      <td>
+                        العناصر المرئية مثل أزرار الإغلاق تعتمد على السياق.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4>Layout Patterns مذكورة</h4>
+              <ul>
+                <li>Grid للبطاقات والخدمات.</li>
+                <li>Sidebar للفلاتر على Desktop في صفحة نتائج البحث.</li>
+                <li>Popup للفلاتر على Mobile.</li>
+                <li>Stepper داخل Card في صفحة تصميم الباقة.</li>
+                <li>Summary Panel ثابت/Sticky في صفحة تصميم الباقة.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="radius-border-shadow" class="section">
+            <div class="section-header">
+              <h2>7. الحواف والحدود والظلال</h2>
+              <p>تدرج الحواف والحدود والارتفاعات البصرية.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>الفئة</th>
+                    <th>القيمة</th>
+                    <th>الاستخدام</th>
+                    <th>ملاحظات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>xs</td>
+                    <td>4px</td>
+                    <td>تفاصيل صغيرة جداً.</td>
+                    <td>مذكور في النظام.</td>
+                  </tr>
+                  <tr>
+                    <td>sm</td>
+                    <td>8px</td>
+                    <td>عناصر صغيرة.</td>
+                    <td>مذكور في النظام.</td>
+                  </tr>
+                  <tr>
+                    <td>md</td>
+                    <td>12px</td>
+                    <td>حقول ونماذج.</td>
+                    <td>مذكور في النظام.</td>
+                  </tr>
+                  <tr>
+                    <td>lg</td>
+                    <td>16px</td>
+                    <td>بطاقات.</td>
+                    <td>مذكور في النظام.</td>
+                  </tr>
+                  <tr>
+                    <td>xl</td>
+                    <td>28px</td>
+                    <td>بطاقات كبيرة وأغلفة.</td>
+                    <td>مذكور في النظام.</td>
+                  </tr>
+                  <tr>
+                    <td>full</td>
+                    <td>999px</td>
+                    <td>أزرار Pill ودوائر.</td>
+                    <td>استبدال 100px بـ 999px موصى به.</td>
+                  </tr>
+                  <tr>
+                    <td>Border default</td>
+                    <td>1px</td>
+                    <td>حدود وفواصل.</td>
+                    <td>استخدام لون Outline.</td>
+                  </tr>
+                  <tr>
+                    <td>Border strong</td>
+                    <td>1.5px</td>
+                    <td>Focus أو Select.</td>
+                    <td>مقترح من النظام المعدّل.</td>
+                  </tr>
+                  <tr>
+                    <td>e-1</td>
+                    <td>0 2px 4px rgba(0,0,0,.05)</td>
+                    <td>بطاقات عادية.</td>
+                    <td>معتمد.</td>
+                  </tr>
+                  <tr>
+                    <td>e-2</td>
+                    <td>0 8px 16px rgba(0,0,0,.08)</td>
+                    <td>تفاعل أو ارتفاع متوسط.</td>
+                    <td>معتمد.</td>
+                  </tr>
+                  <tr>
+                    <td>e-3</td>
+                    <td>0 16px 32px rgba(0,0,0,.12)</td>
+                    <td>نوافذ وعناصر بارزة.</td>
+                    <td>مقترح داخل التعديل لتوحيد Modals.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="example-zone">
+              <div class="interactive-card" tabindex="0">
+                <strong>بطاقة تفاعلية</strong>
+                <p class="muted">
+                  Default يستخدم e-1، وعند hover يستخدم e-2 مع ارتفاع بسيط.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="icons" class="section">
+            <div class="section-header">
+              <h2>8. الأيقونات</h2>
+              <p>مكتبة الأيقونات وأسلوب استخدامها.</p>
+            </div>
+
+            <div class="card">
+              <h3>المكتبة المحددة</h3>
+              <p>Material Symbols Rounded أو أسلوب أيقونات متناسق معه.</p>
+
+              <h4>الحجم والوزن</h4>
+              <p>
+                ظهر في الواجهات حجم 24px كحجم أساسي للأيقونات، و32px أو 48px
+                للعناصر البارزة. الوزن التفصيلي غير محدد في النظام الحالي.
+              </p>
+
+              <h4>قواعد الاستخدام</h4>
+              <ul>
+                <li>
+                  استخدم الأيقونات لتوضيح الفعل أو الحالة، وليس كزخرفة زائدة.
+                </li>
+                <li>
+                  في حالات Error/Success لا تعتمد على اللون فقط؛ استخدم أيقونة
+                  ونصاً.
+                </li>
+                <li>التقييمات تستخدم Gold-500.</li>
+              </ul>
+
+              <div class="example-zone">
+                <div class="btn-row">
+                  <span class="badge">☆ تقييم 4.8</span>
+                  <span class="badge-success">✓ متاح</span>
+                  <span class="badge-error">! خطأ</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="components" class="section">
+            <div class="section-header">
+              <h2>9. مكتبة المكونات</h2>
+              <p>المكونات المذكورة أو المستنتجة بوضوح من النظام المعدّل.</p>
+            </div>
+
+            <article class="component-card">
+              <h3>Buttons</h3>
+              <p>الغرض: تنفيذ الأفعال الواضحة مثل احجز، ادفع، قارن، حفظ.</p>
+              <p>
+                <strong>متى يستخدم:</strong> عند وجود فعل مباشر.
+                <strong>متى لا يستخدم:</strong> كنص زخرفي أو كرابط طويل.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Primary يستخدم Plum مع نص
+                أبيض، Secondary يستخدم Gold بدرجاته المناسبة، Radius كامل، أقل
+                ارتفاع 44px.
+              </p>
+              <p>
+                <strong>الحالات:</strong> Default, Hover, Focus, Active,
+                Disabled, Loading غير محددة بصرياً في النظام الحالي.
+              </p>
+              <div class="example-zone">
+                <div class="btn-row">
+                  <button class="btn btn-primary">احجز الآن</button>
+                  <button class="btn btn-secondary">قارن</button>
+                  <button class="btn btn-outline">عرض التفاصيل</button>
+                  <button class="btn btn-text">تعديل</button>
+                  <button class="btn btn-danger">حذف</button>
+                  <button class="btn btn-primary" disabled>غير متاح</button>
+                </div>
+              </div>
+              <pre class="code-block">
+.btn-primary {
+  background: var(--color-primary-plum-700);
+  color: var(--color-on-primary);
+  border-radius: var(--radius-full);
+  min-height: 44px;
+}</pre
+              >
+              <p>
+                <strong>أخطاء شائعة:</strong> استخدام Gold كزر Primary في إجراء
+                أساسي، أو استخدام padding عشوائي، أو عدم توفير focus.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Inputs / Selects / Textareas</h3>
+              <p>
+                الغرض: إدخال البيانات مع وضوح labels ورسائل المساعدة والخطأ.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> النماذج، البحث، الفلاتر.
+                <strong>متى لا يستخدم:</strong> عند الحاجة إلى اختيار بصري معقد
+                غير موثق.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Label أعلى الحقل، حد Outline،
+                Radius 12px، Focus بحد/ظل Primary، الخط Tajawal، الأرقام IBM
+                Plex.
+              </p>
+              <div class="example-zone">
+                <div class="field">
+                  <label for="field-demo">رقم الجوال</label>
+                  <input id="field-demo" type="tel" placeholder="05xxxxxxxx" />
+                  <span class="helper"
+                    >استخدم أرقاماً واضحة. هذا النص مساعد وليس بديلاً عن
+                    label.</span
+                  >
+                </div>
+                <div class="field error">
+                  <label for="field-error">الميزانية</label>
+                  <input id="field-error" type="number" value="0" />
+                  <span class="error-message">أدخل قيمة أكبر من صفر.</span>
+                </div>
+              </div>
+              <pre class="code-block">
+.field input:focus {
+  border-color: var(--color-primary-plum-700);
+  box-shadow: 0 0 0 4px rgba(82, 43, 71, 0.12);
+}</pre
+              >
+            </article>
+
+            <article class="component-card">
+              <h3>Cards</h3>
+              <p>الغرض: عرض خدمات، باقات، قاعات، نتائج، أو معلومات مجمعة.</p>
+              <p>
+                <strong>متى يستخدم:</strong> عندما يحتاج المحتوى إلى تجميع واضح.
+                <strong>متى لا يستخدم:</strong> لتقسيمات غير ضرورية تزيد
+                التشويش.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Surface أبيض، Border Outline،
+                Radius 16px، Shadow e-1. البطاقة التفاعلية تستخدم e-2 عند hover.
+              </p>
+              <div class="example-zone">
+                <div class="interactive-card" tabindex="0">
+                  <span class="badge">قاعة</span>
+                  <h4 style="margin: var(--space-12) 0 var(--space-8)">
+                    قاعة ليلة
+                  </h4>
+                  <p class="muted">الرياض، حي الياسمين</p>
+                  <p class="rating">★ 4.8</p>
+                  <p class="price">18,000 ر.س</p>
+                  <button class="btn btn-primary">عرض التفاصيل</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="component-card">
+              <h3>Tables</h3>
+              <p>
+                الغرض: عرض بيانات منظمة مثل المستخدمين أو الأسعار أو المقارنات.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> رأس الجدول يمكن أن يستخدم
+                Primary مع نص أبيض، الخلايا تستخدم spacing من النظام، الحدود
+                Outline.
+              </p>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>الخدمة</th>
+                      <th>السعر</th>
+                      <th>الحالة</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>قاعة</td>
+                      <td class="price">18,000 ر.س</td>
+                      <td><span class="badge-success badge">متاح</span></td>
+                    </tr>
+                    <tr>
+                      <td>تصوير</td>
+                      <td class="price">4,500 ر.س</td>
+                      <td><span class="badge-warning badge">محدود</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="component-card">
+              <h3>Badges</h3>
+              <p>الغرض: إظهار حالة أو تصنيف مختصر.</p>
+              <p>
+                <strong>متى يستخدم:</strong> متاح، جديد، مكتمل، حالة حجز.
+                <strong>متى لا يستخدم:</strong> كزر أساسي أو رسالة طويلة.
+              </p>
+              <div class="example-zone">
+                <div class="btn-row">
+                  <span class="badge">جديد</span>
+                  <span class="badge-success badge">متاح</span>
+                  <span class="badge-error badge">غير متاح</span>
+                  <span class="badge-info badge">معلومة</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="component-card">
+              <h3>Alerts</h3>
+              <p>الغرض: عرض حالة أو رسالة مهمة داخل السياق.</p>
+              <p>
+                <strong>متى يستخدم:</strong> خطأ في النموذج، نجاح عملية، تنبيه.
+                <strong>متى لا يستخدم:</strong> للزخرفة أو تكرار المعلومة.
+              </p>
+              <div class="example-zone">
+                <div class="alert alert-success">
+                  <strong>تم الحفظ بنجاح</strong>
+                  <span>يمكنك متابعة تصميم الباقة.</span>
+                </div>
+                <div class="alert alert-error">
+                  <strong>حدث خطأ</strong>
+                  <span>يرجى مراجعة الحقول المطلوبة.</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="component-card">
+              <h3>Modals</h3>
+              <p>الغرض: إدارة قرار أو عملية داخلية دون مغادرة الصفحة.</p>
+              <p>
+                <strong>القواعد البصرية:</strong> Overlay داكن شفاف، Card بيضاء،
+                Radius 16px، Shadow e-3، padding 24px.
+              </p>
+              <div class="modal-demo">
+                <div class="modal-card">
+                  <div class="modal-header">
+                    <h4>إدارة الخدمات</h4>
+                    <button class="icon-btn" aria-label="إغلاق">×</button>
+                  </div>
+                  <p class="muted">اختاري نوع الخدمة لإضافتها إلى الباقة.</p>
+                  <div class="field">
+                    <label for="service-demo">نوع الخدمة</label>
+                    <select id="service-demo">
+                      <option>قاعة</option>
+                      <option>تصوير</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="component-card">
+              <h3>Navigation</h3>
+              <p>الغرض: التنقل بين صفحات المنصة.</p>
+              <p>
+                <strong>القواعد:</strong> Navbar ثابت أو واضح، خلفية
+                Surface/Background، حدود Outline، روابط بلون النص الأساسي، Hover
+                بالذهبي، أزرار auth متوافقة مع Buttons.
+              </p>
+              <div class="example-zone">
+                <div class="btn-row" style="justify-content: space-between">
+                  <strong style="color: var(--color-primary-plum-700)"
+                    >ليلة</strong
+                  >
+                  <a href="#" class="btn btn-text">الخدمات</a>
+                  <a href="#" class="btn btn-text">الباقات</a>
+                  <a href="#" class="btn btn-primary">إنشاء حساب</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="component-card">
+              <h3>Forms</h3>
+              <p>الغرض: جمع بيانات المستخدم أو المورد أو الحجز.</p>
+              <p>
+                <strong>القواعد:</strong> تقسيم النموذج إلى Sections واضحة،
+                Label أعلى كل حقل، رسائل خطأ أسفل الحقل، Focus واضح، لا يعتمد
+                على Placeholder فقط.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Data Display</h3>
+              <p>
+                الغرض: عرض الأسعار، الأرقام، التقييمات، الإحصائيات والجداول.
+              </p>
+              <p>
+                <strong>القواعد:</strong> IBM Plex Sans Arabic للأرقام والأسعار،
+                Gold-500 للتقييمات، Plum للأسعار المهمة، وعدم الاعتماد على اللون
+                وحده للحالات.
+              </p>
+            </article>
+          </section>
+
+          <section id="states" class="section">
+            <div class="section-header">
+              <h2>10. حالات المكونات</h2>
+              <p>الحالات المذكورة في النظام، مع ملاحظات التوثيق.</p>
+            </div>
+
+            <div class="status-grid">
+              <div class="card">
+                <h3>Default</h3>
+                <p>الحالة الأساسية لكل مكون. يجب أن تستخدم Tokens النظام.</p>
+              </div>
+              <div class="card">
+                <h3>Hover</h3>
+                <p>موجودة في الأزرار والبطاقات والروابط. الحركة 300ms.</p>
+              </div>
+              <div class="card">
+                <h3>Focus</h3>
+                <p>
+                  يجب أن يكون واضحاً باستخدام Primary وحد/ظل. يحتاج توحيداً
+                  عاماً.
+                </p>
+              </div>
+              <div class="card">
+                <h3>Active</h3>
+                <p>
+                  موجودة في Stepper وبعض روابط navigation. تفاصيلها غير محددة
+                  لكل المكونات.
+                </p>
+              </div>
+              <div class="card">
+                <h3>Disabled</h3>
+                <p>
+                  مطلوبة لكنها غير مكتملة في التوثيق الحالي. يجب أن تقلل البروز
+                  ولا تعتمد على اللون فقط.
+                </p>
+              </div>
+              <div class="card">
+                <h3>Error</h3>
+                <p>تستخدم Error وتظهر أسفل الحقول. لا تعتمد على اللون فقط.</p>
+              </div>
+              <div class="card">
+                <h3>Success</h3>
+                <p>تستخدم Success مع نص وأيقونة عند الحاجة.</p>
+              </div>
+              <div class="card">
+                <h3>Loading</h3>
+                <p>
+                  مذكورة كحالة مطلوبة، لكن تفاصيلها البصرية غير محددة في النظام
+                  الحالي.
+                </p>
+              </div>
+              <div class="card">
+                <h3>Empty</h3>
+                <p>
+                  مذكورة في صفحات الحجز والبيانات. التفاصيل الكاملة غير محددة في
+                  النظام الحالي.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="forms" class="section">
+            <div class="section-header">
+              <h2>11. النماذج وحقول الإدخال</h2>
+              <p>قواعد Labels، Placeholders، Validation، والأخطاء.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>القاعدة</th>
+                    <th>التوثيق</th>
+                    <th>ملاحظات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Labels</td>
+                    <td>تظهر أعلى الحقول.</td>
+                    <td>عدم وجود Label يعد كسراً للنظام.</td>
+                  </tr>
+                  <tr>
+                    <td>Placeholders</td>
+                    <td>تستخدم كمساعدة إضافية لا كبديل عن Label.</td>
+                    <td>يجب ألا تحتوي المعلومة الوحيدة المهمة.</td>
+                  </tr>
+                  <tr>
+                    <td>Helper Text</td>
+                    <td>نص صغير أسفل الحقل بلون نص ثانوي.</td>
+                    <td>استخدامه عند الحاجة للتوجيه.</td>
+                  </tr>
+                  <tr>
+                    <td>Error Messages</td>
+                    <td>تظهر أسفل الحقل باللون الأحمر مع نص واضح.</td>
+                    <td>لا تعتمد على اللون فقط.</td>
+                  </tr>
+                  <tr>
+                    <td>Required / Optional</td>
+                    <td>غير محدد تفصيلياً في النظام الحالي.</td>
+                    <td>يحتاج اعتماد من فريق التصميم.</td>
+                  </tr>
+                  <tr>
+                    <td>Focus</td>
+                    <td>Primary border/shadow واضح.</td>
+                    <td>مطلوب في كل الحقول.</td>
+                  </tr>
+                  <tr>
+                    <td>Disabled</td>
+                    <td>مذكور كحالة مطلوبة، لكن تفاصيله غير محددة.</td>
+                    <td>يحتاج توثيق بصري أدق.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="data-display" class="section">
+            <div class="section-header">
+              <h2>12. عرض البيانات</h2>
+              <p>
+                الأسعار، الأرقام، الجداول، الإحصائيات، التقييمات، والحالات
+                الفارغة.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>قواعد عرض البيانات</h3>
+              <ul>
+                <li>
+                  الأسعار والأرقام تستخدم IBM Plex Sans Arabic عند الحاجة.
+                </li>
+                <li>التقييمات تستخدم Gold-500.</li>
+                <li>
+                  الجداول تستخدم رأس واضح وحدود Outline ومسافات من النظام.
+                </li>
+                <li>
+                  الأرقام المهمة مثل السعر الإجمالي تظهر بوزن مرتفع ولون Plum.
+                </li>
+                <li>
+                  حالات البيانات الفارغة موجودة ضمن بعض الواجهات، لكن قواعدها
+                  التفصيلية غير محددة في النظام الحالي.
+                </li>
+              </ul>
+
+              <div class="example-zone">
+                <div class="component-card">
+                  <span class="badge">ملخص الباقة</span>
+                  <strong class="price">32,500 ر.س</strong>
+                  <p class="muted">الإجمالي الحالي بعد اختيار 4 خدمات.</p>
+                  <span class="rating">★ 4.9 من 128 تقييم</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="motion" class="section">
+            <div class="section-header">
+              <h2>13. الحركة والتفاعل</h2>
+              <p>مدة الحركة، منحنى الانتقال، وسلوك Hover/Focus.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>البند</th>
+                    <th>القيمة</th>
+                    <th>الاستخدام</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Duration</td>
+                    <td><code>300ms</code></td>
+                    <td>الانتقالات القياسية.</td>
+                  </tr>
+                  <tr>
+                    <td>Curve</td>
+                    <td><code>cubic-bezier(0.4, 0, 0.2, 1)</code></td>
+                    <td>منحنى الحركة القياسي.</td>
+                  </tr>
+                  <tr>
+                    <td>Hover</td>
+                    <td>Opacity أو ارتفاع بسيط أو خلفية Surface Variant.</td>
+                    <td>يجب أن يكون هادئاً وغير مبالغ.</td>
+                  </tr>
+                  <tr>
+                    <td>Focus</td>
+                    <td>حد/ظل Primary واضح.</td>
+                    <td>مهم للوصول.</td>
+                  </tr>
+                  <tr>
+                    <td>Loading</td>
+                    <td>غير محدد في النظام الحالي.</td>
+                    <td>يحتاج اعتماد من فريق التصميم.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="accessibility" class="section">
+            <div class="section-header">
+              <h2>14. سهولة الوصول Accessibility</h2>
+              <p>قواعد الوصول المرتبطة بنظام التصميم.</p>
+            </div>
+
+            <div class="card">
+              <ul>
+                <li>تباين النص لا يقل عن 4.5:1.</li>
+                <li>أقل مساحة نقر 44x44px.</li>
+                <li>Focus visible مطلوب لكل الأزرار والروابط والحقول.</li>
+                <li>لا تعتمد على اللون وحده لتوضيح الحالة.</li>
+                <li>استخدم نصاً وأيقونة مع Error/Success عند الحاجة.</li>
+                <li>
+                  Screen reader labels غير مفصلة في النظام الحالي، لكنها مطلوبة
+                  كمبدأ وصول.
+                </li>
+                <li>
+                  Keyboard navigation مذكور ضمن الحاجة إلى Focus، وتفاصيله غير
+                  محددة في النظام الحالي.
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="undocumented" class="section">
+            <div class="section-header">
+              <h2>15. العناصر المتوافقة مع النظام لكنها غير موثقة سابقاً</h2>
+              <p>
+                هذه العناصر ليست كسراً للنظام؛ هي أنماط متوافقة يمكن توثيقها أو
+                اعتمادها.
+              </p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>العنصر</th>
+                    <th>نوعه</th>
+                    <th>أين ظهر أو لماذا اقترح</th>
+                    <th>سبب التوافق</th>
+                    <th>الحالة</th>
+                    <th>قرار التوصية</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Navbar Search Pill</td>
+                    <td>Component</td>
+                    <td>شريط البحث في Navbar.</td>
+                    <td>
+                      Surface Variant، radius كامل، حركة 300ms، واجهة هادئة.
+                    </td>
+                    <td>تحتاج اعتماد من فريق التصميم.</td>
+                    <td>وثّقه بعد تعديل بسيط.</td>
+                  </tr>
+                  <tr>
+                    <td>Package Stepper</td>
+                    <td>Component / Pattern</td>
+                    <td>صفحة تصميم الباقة.</td>
+                    <td>Plum للحالة النشطة، Gold للمكتملة، RTL واضح.</td>
+                    <td>إضافة مقترحة قوية.</td>
+                    <td>وثّقه كما هو مع Focus/Disabled.</td>
+                  </tr>
+                  <tr>
+                    <td>Service Management Modal</td>
+                    <td>Component</td>
+                    <td>إدارة الخدمات داخل تصميم الباقة.</td>
+                    <td>Overlay هادئ، Surface، Outline، Shadow.</td>
+                    <td>تحتاج اعتماد من فريق التصميم.</td>
+                    <td>وثّقه بعد تعديل بسيط.</td>
+                  </tr>
+                  <tr>
+                    <td>Quiet Text Button</td>
+                    <td>Component</td>
+                    <td>أزرار نصية ثانوية.</td>
+                    <td>لا يزاحم الإجراء الأساسي ويحافظ على الهدوء.</td>
+                    <td>تحتاج اعتماد من فريق التصميم.</td>
+                    <td>وثّقه كما هو.</td>
+                  </tr>
+                  <tr>
+                    <td>Interactive Elevated Card</td>
+                    <td>Pattern</td>
+                    <td>بطاقات الخدمات والباقات.</td>
+                    <td>e-1 إلى e-2 مع ارتفاع بسيط.</td>
+                    <td>تحتاج اعتماد من فريق التصميم.</td>
+                    <td>وثّقه بعد تعديل بسيط.</td>
+                  </tr>
+                  <tr>
+                    <td>Trust Feature Strip</td>
+                    <td>Pattern</td>
+                    <td>أقسام المميزات والثقة.</td>
+                    <td>يعكس شخصية داعمة وخبيرة ويستخدم Plum/Gold.</td>
+                    <td>تحتاج اعتماد من فريق التصميم.</td>
+                    <td>وثّقه بعد تعديل بسيط.</td>
+                  </tr>
+                  <tr>
+                    <td>Data Number Text</td>
+                    <td>Token / Guideline</td>
+                    <td>الأرقام والأسعار.</td>
+                    <td>يتبع قاعدة IBM Plex للأرقام.</td>
+                    <td>إضافة معتمدة منطقياً حسب النظام.</td>
+                    <td>وثّقه كما هو.</td>
+                  </tr>
+                  <tr>
+                    <td>Success Dialog</td>
+                    <td>Component</td>
+                    <td>تأكيد نجاح عمليات مهمة.</td>
+                    <td>Surface، Success، نص وأيقونة، زر Primary.</td>
+                    <td>تحتاج اعتماد من فريق التصميم.</td>
+                    <td>وثّقه بعد تعديل بسيط.</td>
+                  </tr>
+                  <tr>
+                    <td>Editorial Page Heading</td>
+                    <td>Pattern</td>
+                    <td>رؤوس صفحات الباقات وتصميم الباقة.</td>
+                    <td>Eyebrow ذهبي، عنوان Plum، وصف ثانوي.</td>
+                    <td>تحتاج اعتماد من فريق التصميم.</td>
+                    <td>وثّقه كما هو.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <article class="component-card">
+              <h3>Navbar Search Pill</h3>
+              <p><strong>نوعه:</strong> Component</p>
+              <p>
+                <strong>الوصف:</strong> حقل بحث علوي داخل Navbar بتصميم Pill
+                وخلفية Surface Variant.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> البحث السريع عن قاعة، مورد، خدمة،
+                أو باقة.
+              </p>
+              <p>
+                <strong>متى لا يستخدم:</strong> لإدخال بيانات حساسة أو كنموذج
+                طويل.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> خلفية Surface Variant، Radius
+                كامل، ارتفاع 44px، Focus بحد/ظل Primary، RTL.
+              </p>
+              <p>
+                <strong>الحالات:</strong> Default, Hover, Focus, Active,
+                Disabled. Error غير مناسب غالباً.
+              </p>
+              <div class="example-zone">
+                <div class="search-pill">
+                  <span aria-hidden="true">⌕</span>
+                  <input
+                    type="search"
+                    placeholder="ابحث عن قاعة أو خدمة"
+                    aria-label="البحث"
+                  />
+                </div>
+              </div>
+              <div class="do-dont">
+                <div class="do">
+                  <strong>مثال صحيح:</strong>
+                  <p>بحث سريع عن “قاعة في الرياض”.</p>
+                </div>
+                <div class="dont">
+                  <strong>مثال خاطئ:</strong>
+                  <p>استخدامه كحقل كلمة مرور أو رقم جوال.</p>
+                </div>
+              </div>
+              <pre class="code-block">
+.search-pill {
+  min-height: 44px;
+  background: var(--color-surface-variant);
+  border-radius: var(--radius-full);
+  padding: var(--space-8) var(--space-16);
+}</pre
+              >
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه بعد تعديل بسيط — اجعل Focus
+                يستخدم Primary بوضوح.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Package Stepper</h3>
+              <p><strong>نوعه:</strong> Component / Pattern</p>
+              <p>
+                <strong>الوصف:</strong> مسار متعدد الخطوات لإنشاء الباقة، بدوائر
+                حالة وتسميات قصيرة.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> العمليات متعددة الخطوات مثل تصميم
+                الباقة أو إكمال الحجز.
+              </p>
+              <p>
+                <strong>متى لا يستخدم:</strong> لقوائم التنقل العادية أو عمليتين
+                فقط.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Default بحد Gold، Active
+                بخلفية Plum، Completed بخلفية Gold، Radius كامل، Gap 16px.
+              </p>
+              <p>
+                <strong>الحالات:</strong> Default, Hover, Focus, Active,
+                Completed, Disabled, Error عند وجود خطأ في خطوة.
+              </p>
+              <div class="example-zone">
+                <div class="package-stepper">
+                  <button class="step-item completed">
+                    <span class="step-circle">1</span>
+                    <span class="step-label">الميزانية</span>
+                  </button>
+                  <button class="step-item active">
+                    <span class="step-circle">2</span>
+                    <span class="step-label">القاعة</span>
+                  </button>
+                  <button class="step-item">
+                    <span class="step-circle">3</span>
+                    <span class="step-label">التصوير</span>
+                  </button>
+                </div>
+              </div>
+              <div class="do-dont">
+                <div class="do">
+                  <strong>مثال صحيح:</strong>
+                  <p>ميزانية ← قاعة ← تصوير ← دعوات.</p>
+                </div>
+                <div class="dont">
+                  <strong>مثال خاطئ:</strong>
+                  <p>استخدامه كفلتر أفقي للخدمات.</p>
+                </div>
+              </div>
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه كما هو مع إضافة Focus
+                وDisabled.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Service Management Modal</h3>
+              <p><strong>نوعه:</strong> Component</p>
+              <p>
+                <strong>الوصف:</strong> Modal لإضافة أو تعديل أو حذف خدمة داخل
+                عملية تصميم الباقة.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> عند إدارة عناصر داخلية دون مغادرة
+                الصفحة.
+              </p>
+              <p>
+                <strong>متى لا يستخدم:</strong> للتنبيهات البسيطة أو الرسائل
+                العابرة.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Overlay داكن شفاف، Surface،
+                Outline، Radius 16px، Shadow e-3، Padding 24px.
+              </p>
+              <p>
+                <strong>الحالات:</strong> Default/Open, Closing, Focus,
+                Disabled, Error. Success غالباً عبر Success Dialog.
+              </p>
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه بعد تعديل بسيط — أضف Focus
+                trap وسلوك إغلاق بلوحة المفاتيح.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Quiet Text Button</h3>
+              <p><strong>نوعه:</strong> Component</p>
+              <p>
+                <strong>الوصف:</strong> زر نصي منخفض البروز للإجراءات الثانوية.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> تعديل، عرض المزيد، إدارة الخدمات،
+                رجوع.
+              </p>
+              <p>
+                <strong>متى لا يستخدم:</strong> للإجراء الأساسي مثل احجز أو
+                ادفع.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> نص Primary، خلفية شفافة، Hover
+                Surface Variant، Radius كامل، 44px.
+              </p>
+              <div class="example-zone">
+                <button class="btn btn-text">إدارة الخدمات</button>
+              </div>
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه كما هو مع Focus وDisabled.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Interactive Elevated Card</h3>
+              <p><strong>نوعه:</strong> Pattern</p>
+              <p>
+                <strong>الوصف:</strong> بطاقة تفاعلية تنتقل من e-1 إلى e-2 عند
+                hover.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> بطاقات الخدمات، القاعات، الباقات،
+                المفضلة.
+              </p>
+              <p>
+                <strong>متى لا يستخدم:</strong> للبطاقات المعلوماتية غير القابلة
+                للنقر.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Surface، Outline، Radius 16px،
+                Hover translateY(-4px)، Shadow e-2.
+              </p>
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه بعد تعديل بسيط — اجعل -4px
+                معياراً بدلاً من -8px.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Trust Feature Strip</h3>
+              <p><strong>نوعه:</strong> Pattern</p>
+              <p>
+                <strong>الوصف:</strong> شريط مميزات ثقة مثل أسعار واضحة، مقارنة
+                سهلة، حجز آمن.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> أسفل صفحات التسويق أو النتائج أو
+                الانضمام.
+              </p>
+              <p>
+                <strong>متى لا يستخدم:</strong> داخل تدفق دفع أو حجز حساس إذا
+                كان يشتت المستخدم.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Plum أو Surface Variant،
+                أيقونات Gold، spacing 32/64، غير تفاعلي غالباً.
+              </p>
+              <div class="example-zone">
+                <div class="trust-strip-demo">
+                  <div>
+                    <span class="trust-icon">✓</span
+                    ><strong>أسعار واضحة</strong>
+                  </div>
+                  <div>
+                    <span class="trust-icon">≋</span
+                    ><strong>مقارنة سهلة</strong>
+                  </div>
+                  <div>
+                    <span class="trust-icon">●</span><strong>حجز آمن</strong>
+                  </div>
+                </div>
+              </div>
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه بعد تعديل بسيط — استبدل 6%
+                بقواعد Container.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Data Number Text</h3>
+              <p><strong>نوعه:</strong> Token / Guideline</p>
+              <p>
+                <strong>الوصف:</strong> قاعدة استخدام IBM Plex Sans Arabic
+                للأرقام والأسعار والبيانات المالية.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> الأسعار، الميزانية، الإجمالي، أرقام
+                الجوال، قيم المقارنة.
+              </p>
+              <p><strong>متى لا يستخدم:</strong> للعناوين أو النصوص السردية.</p>
+              <p>
+                <strong>القواعد البصرية:</strong> IBM Plex، لون حسب السياق،
+                السعر المهم Plum أو Gold.
+              </p>
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه كما هو وطبقه على كل
+                الصفحات.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Success Dialog</h3>
+              <p><strong>نوعه:</strong> Component</p>
+              <p>
+                <strong>الوصف:</strong> Dialog لتأكيد نجاح عملية مهمة مع أيقونة
+                ونص وزر Primary.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> حفظ باقة، تأكيد حجز، إرسال طلب
+                مورد.
+              </p>
+              <p>
+                <strong>متى لا يستخدم:</strong> لكل تغيير صغير أو تحديث مرئي في
+                الصفحة.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Surface، Success، Radius 16px،
+                Shadow e-3، زر Primary، أيقونة ونص.
+              </p>
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه بعد تعديل بسيط — لا تعتمد
+                على اللون وحده.
+              </p>
+            </article>
+
+            <article class="component-card">
+              <h3>Editorial Page Heading</h3>
+              <p><strong>نوعه:</strong> Pattern</p>
+              <p>
+                <strong>الوصف:</strong> رأس صفحة يتكون من Eyebrow ذهبي، عنوان
+                Plum، ووصف ثانوي.
+              </p>
+              <p>
+                <strong>متى يستخدم:</strong> بداية الصفحات الداخلية مثل الباقات،
+                النتائج، تصميم الباقة، الملف الشخصي.
+              </p>
+              <p>
+                <strong>متى لا يستخدم:</strong> داخل Cards صغيرة أو تكراره بكثرة
+                في الصفحة.
+              </p>
+              <p>
+                <strong>القواعد البصرية:</strong> Eyebrow Gold، Title 32–40px
+                Plum، Description نص ثانوي، RTL يمين.
+              </p>
+              <div class="example-zone">
+                <div class="page-heading-demo">
+                  <p class="eyebrow">صممي باقتك</p>
+                  <h3>ابني باقتك حسب ميزانيتك</h3>
+                  <p>اختاري الخدمات المناسبة وسنحدث الملخص تلقائياً.</p>
+                </div>
+              </div>
+              <p>
+                <strong>قرار التوصية:</strong> وثّقه كما هو مع استبدال opacity
+                بتوكن نص ثانوي عند توفره.
+              </p>
+            </article>
+          </section>
+
+          <section id="note-types" class="section">
+            <div class="section-header">
+              <h2>16. التفريق بين أنواع الملاحظات</h2>
+              <p>ليس كل عنصر غير موثق يعتبر كسراً في نظام التصميم.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>النوع</th>
+                    <th>التعريف</th>
+                    <th>طريقة التعامل</th>
+                    <th>مثال</th>
+                    <th>القرار المطلوب</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>كسر صريح للنظام</td>
+                    <td>
+                      عنصر يخالف قاعدة موثقة أو يستخدم قيماً خارج النظام دون
+                      سبب.
+                    </td>
+                    <td>يعدل فوراً أو يربط بتوكن صحيح.</td>
+                    <td>مسافة 15px، زر Primary بالذهبي، حقل بلا Label.</td>
+                    <td>إصلاح.</td>
+                  </tr>
+                  <tr>
+                    <td>عنصر متوافق لكنه غير موثق</td>
+                    <td>
+                      نمط يحافظ على الهوية ويستخدم Tokens ولا يكسر القواعد.
+                    </td>
+                    <td>
+                      يوثق كـ Component/Pattern/Guideline أو يحتاج اعتماد.
+                    </td>
+                    <td>Package Stepper، Navbar Search Pill.</td>
+                    <td>توثيق أو اعتماد.</td>
+                  </tr>
+                  <tr>
+                    <td>عنصر غير واضح ويحتاج قراراً</td>
+                    <td>لا يتضح هل هو قاعدة عامة أو حالة خاصة.</td>
+                    <td>يصنف كـ يحتاج اعتماد من فريق التصميم.</td>
+                    <td>Loading visuals غير محددة.</td>
+                    <td>قرار تصميم.</td>
+                  </tr>
+                  <tr>
+                    <td>عنصر خاص بحالة واحدة</td>
+                    <td>حل مخصص لا يتكرر ولا يضيف قاعدة عامة.</td>
+                    <td>لا يوثق إلا إذا تكرر وأثبت فائدته.</td>
+                    <td>تنسيق خاص لصفحة محددة فقط.</td>
+                    <td>لا توثقه لأنه حالة خاصة.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="change-log" class="section">
+            <div class="section-header">
+              <h2>17. سجل التعديلات</h2>
+              <p>تعديلات مذكورة في سياق المحادثة والتدقيق.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>القسم</th>
+                    <th>ما قبل التعديل</th>
+                    <th>ما بعد التعديل</th>
+                    <th>سبب التعديل</th>
+                    <th>الأثر</th>
+                    <th>يحتاج اعتماد؟</th>
+                    <th>الأولوية</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Tokens</td>
+                    <td>قيم متفرقة وأسماء مختلفة بين الصفحات.</td>
+                    <td>
+                      توكنز موحدة للألوان والخطوط والمسافات والحواف والظلال.
+                    </td>
+                    <td>توحيد النظام.</td>
+                    <td>اتساق أعلى وتقليل الكسور.</td>
+                    <td>لا</td>
+                    <td>حرجة</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Forms</td>
+                    <td>حقول تعتمد على Placeholder فقط.</td>
+                    <td>Labels أعلى الحقول ورسائل خطأ أسفلها.</td>
+                    <td>مطابقة النظام والوصول.</td>
+                    <td>وضوح أعلى وسهولة استخدام.</td>
+                    <td>لا</td>
+                    <td>حرجة</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Focus</td>
+                    <td>Focus غير موحد أو ضعيف.</td>
+                    <td>Border/Shadow باستخدام Primary.</td>
+                    <td>الوصول والاتساق.</td>
+                    <td>تحسين Keyboard navigation.</td>
+                    <td>لا</td>
+                    <td>حرجة</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Buttons</td>
+                    <td>استخدام Gold كزر رئيسي في بعض الحالات.</td>
+                    <td>Primary Plum للزر الأساسي، Gold للثانوي.</td>
+                    <td>مطابقة قاعدة الأزرار.</td>
+                    <td>وضوح الهرمية.</td>
+                    <td>لا</td>
+                    <td>عالية</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Spacing</td>
+                    <td>قيم مثل 15/20/25/30/40/50px.</td>
+                    <td>تحويلها إلى قيم النظام 16/24/32/48.</td>
+                    <td>إزالة المسافات العشوائية.</td>
+                    <td>اتساق Layout.</td>
+                    <td>لا</td>
+                    <td>عالية</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Radius</td>
+                    <td>استخدام 100px أو قيم غير موحدة.</td>
+                    <td>استخدام 999px للـ full وباقي درجات النظام.</td>
+                    <td>توحيد الحواف.</td>
+                    <td>اتساق المكونات.</td>
+                    <td>لا</td>
+                    <td>متوسطة</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>Data</td>
+                    <td>الأرقام والأسعار تستخدم Tajawal فقط في بعض الصفحات.</td>
+                    <td>IBM Plex Sans Arabic للأرقام والأسعار.</td>
+                    <td>وضوح البيانات المالية.</td>
+                    <td>تحسين قراءة الأسعار.</td>
+                    <td>لا</td>
+                    <td>متوسطة</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>Undocumented Patterns</td>
+                    <td>أنماط متوافقة غير موثقة.</td>
+                    <td>توثيقها كـ متوافق وغير موثق سابقاً.</td>
+                    <td>منع اعتبارها كسراً.</td>
+                    <td>توسيع النظام بوعي.</td>
+                    <td>نعم لبعضها</td>
+                    <td>متوسطة</td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>Search Results Layout</td>
+                    <td>فلاتر أعلى النتائج وفقدان Grid في بعض الحالات.</td>
+                    <td>Sidebar Desktop، Popup Mobile، إصلاح Grid.</td>
+                    <td>تحسين الاتساق والتنظيم.</td>
+                    <td>Layout أوضح.</td>
+                    <td>يحتاج اعتماد إذا أصبح Pattern عام.</td>
+                    <td>متوسطة</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>Package Builder</td>
+                    <td>Stepper قديم ومنطق عرض غير موحد.</td>
+                    <td>
+                      Stepper داخل Card، Summary Panel، إدارة خدمات Modal.
+                    </td>
+                    <td>توحيد تجربة تصميم الباقة.</td>
+                    <td>مكون قابل للتوثيق.</td>
+                    <td>نعم للمكونات الجديدة</td>
+                    <td>عالية</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="checklist" class="section">
+            <div class="section-header">
+              <h2>18. Checklist لاعتماد الإضافات الجديدة</h2>
+              <p>قائمة تقييم مبنية على النظام الموجود.</p>
+            </div>
+
+            <ul class="checklist">
+              <li>
+                <span class="check">✓</span
+                ><span
+                  >هل تستخدم الإضافة Tokens النظام بدلاً من قيم مباشرة؟</span
+                >
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span
+                  >هل تحافظ على شخصية الواجهة: راقية، هادئة، خبيرة، داعمة؟</span
+                >
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span>هل لا تتعارض مع مكونات حالية أو قواعد موثقة؟</span>
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span>هل يمكن تكرارها في أكثر من شاشة أو مكون؟</span>
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span
+                  >هل لها حالات واضحة: Default, Hover, Focus, Disabled عند
+                  الحاجة؟</span
+                >
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span
+                  >هل تدعم الوصول: تباين، Focus، 44x44px، وعدم الاعتماد على
+                  اللون فقط؟</span
+                >
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span
+                  >هل تحتاج Token جديد؟ إذا نعم، هل هذا التوكن مذكور أو يحتاج
+                  اعتماد؟</span
+                >
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span>هل تحتاج اعتماد من فريق التصميم قبل تعميمها؟</span>
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span>هل تم توثيق متى تستخدم ومتى لا تستخدم؟</span>
+              </li>
+              <li>
+                <span class="check">✓</span><span>هل تدعم RTL بوضوح؟</span>
+              </li>
+            </ul>
+          </section>
+
+          <section id="export" class="section">
+            <div class="section-header">
+              <h2>19. تصدير Tokens</h2>
+              <p>CSS Variables وJSON للتوكنز الموجودة في النظام المعدّل فقط.</p>
+            </div>
+
+            <div class="card">
+              <h3>CSS Variables</h3>
+              <pre class="code-block">
+:root {
+  --color-primary-plum-700: #522b47;
+  --color-on-primary: #ffffff;
+  --color-secondary-gold-500: #b19470;
+  --color-background-n10: #fcfaf9;
+  --color-surface: #ffffff;
+  --color-surface-variant: #f4eeed;
+  --color-outline: #d1c4bc;
+  --color-text-primary: #1d1b1e;
+  --color-text-secondary: rgba(29, 27, 30, 0.72);
+  --color-success: #2e7d32;
+  --color-error: #d32f2f;
+  --color-warning: #b26a00;
+  --color-info: #1565c0;
+  --color-rating: var(--color-secondary-gold-500);
+
+  --font-family-base: "Tajawal", sans-serif;
+  --font-family-data: "IBM Plex Sans Arabic", "Tajawal", sans-serif;
+  --font-display: 40px;
+  --font-headline: 32px;
+  --font-title: 24px;
+  --font-body: 16px;
+  --font-caption: 14px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  --border-width-default: 1px;
+  --border-width-strong: 1.5px;
+  --border-width-emphasis: 2px;
+
+  --shadow-e1: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-e2: 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-e3: 0 16px 32px rgba(0, 0, 0, 0.12);
+
+  --motion-duration: 300ms;
+  --motion-curve: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --layout-desktop-margin: 80px;
+  --layout-desktop-gutter: 24px;
+  --layout-mobile-margin: 16px;
+  --layout-mobile-gutter: 16px;
+}</pre
+              >
+
+              <h3>JSON</h3>
+              <pre class="code-block">
+{
+  "color": {
+    "primaryPlum700": "#522b47",
+    "onPrimary": "#ffffff",
+    "secondaryGold500": "#b19470",
+    "backgroundN10": "#fcfaf9",
+    "surface": "#ffffff",
+    "surfaceVariant": "#f4eeed",
+    "outline": "#d1c4bc",
+    "textPrimary": "#1d1b1e",
+    "textSecondary": "rgba(29, 27, 30, 0.72)",
+    "success": "#2e7d32",
+    "error": "#d32f2f",
+    "warning": "#b26a00",
+    "info": "#1565c0",
+    "rating": "{color.secondaryGold500}"
+  },
+  "typography": {
+    "fontFamilyBase": "Tajawal",
+    "fontFamilyData": "IBM Plex Sans Arabic",
+    "display": "40px",
+    "headline": "32px",
+    "title": "24px",
+    "body": "16px",
+    "caption": "14px",
+    "weights": {
+      "regular": 400,
+      "medium": 500,
+      "bold": 700,
+      "black": 900
+    }
+  },
+  "spacing": {
+    "2": "2px",
+    "4": "4px",
+    "8": "8px",
+    "12": "12px",
+    "16": "16px",
+    "24": "24px",
+    "32": "32px",
+    "48": "48px",
+    "64": "64px"
+  },
+  "radius": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "28px",
+    "full": "999px"
+  },
+  "border": {
+    "default": "1px",
+    "strong": "1.5px",
+    "emphasis": "2px"
+  },
+  "shadow": {
+    "e1": "0 2px 4px rgba(0, 0, 0, 0.05)",
+    "e2": "0 8px 16px rgba(0, 0, 0, 0.08)",
+    "e3": "0 16px 32px rgba(0, 0, 0, 0.12)"
+  },
+  "motion": {
+    "duration": "300ms",
+    "curve": "cubic-bezier(0.4, 0, 0.2, 1)"
+  },
+  "layout": {
+    "desktop": {
+      "columns": 12,
+      "margin": "80px",
+      "gutter": "24px"
+    },
+    "mobile": {
+      "columns": 4,
+      "margin": "16px",
+      "gutter": "16px"
+    }
+  }
+}</pre
+              >
+            </div>
+          </section>
+
+          <section id="closing" class="section">
+            <div class="section-header">
+              <h2>20. الخاتمة</h2>
+              <p>قواعد عامة للحفاظ على النظام بعد التعديل.</p>
+            </div>
+
+            <div class="card">
+              <ul>
+                <li>ابدأ دائماً من Tokens النظام قبل كتابة أي قيمة مباشرة.</li>
+                <li>
+                  استخدم Primary Plum للأفعال الأساسية، وSecondary Gold كداعم
+                  وليس كبديل دائم للـ Primary.
+                </li>
+                <li>
+                  أي عنصر غير موثق ليس بالضرورة كسراً؛ قد يكون نمطاً متوافقاً
+                  يحتاج توثيقاً أو اعتماداً.
+                </li>
+                <li>
+                  الإضافات المتوافقة يجب توثيقها أو اعتمادها قبل تكرار استخدامها
+                  في أكثر من شاشة.
+                </li>
+                <li>
+                  أي معلومة غير محددة في النظام الحالي يجب أن تسجل بوضوح كـ “غير
+                  محددة في النظام الحالي” أو “تحتاج اعتماد من فريق التصميم”.
+                </li>
+                <li>
+                  لا تعتمد على اللون وحده للحالات، ووفّر Focus واضحاً ومساحة نقر
+                  لا تقل عن 44x44px.
+                </li>
+                <li>
+                  حافظ على RTL كقاعدة أساسية في التخطيط والمحاذاة وتسلسل
+                  الخطوات.
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const links = document.querySelectorAll(".toc a");
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          links.forEach((item) => item.removeAttribute("aria-current"));
+          link.setAttribute("aria-current", "page");
+        });
+      });
+    </script>
+  </body>
+</html>

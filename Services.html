@@ -394,6 +394,7 @@
       .categories-section {
         padding: 48px 6% 48px;
         background: var(--md-sys-color-surface);
+        margin-top: 100px;
       }
 
       .categories-header {
@@ -480,54 +481,16 @@
         background-position: center;
         background-repeat: no-repeat;
       }
-      /* ===== Laylah Packages Preview ===== */
-      .laylah-packages-preview {
-        min-height: 440px;
-        padding: 72px 6%;
-        background: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
 
-      .laylah-packages-content {
-        width: min(520px, 100%);
-        margin-inline: auto;
-      }
-
-      .laylah-packages-content h2 {
-        color: var(--md-sys-color-primary);
-        font-size: clamp(2rem, 4vw, 2.7rem);
-        font-weight: 900;
-        line-height: 1.25;
-        margin-bottom: var(--spacing-m);
-      }
-
-      .laylah-packages-content p {
-        color: var(--md-sys-color-on-surface);
-        opacity: 0.72;
-        font-size: 1.05rem;
-        line-height: 1.9;
-        margin-bottom: var(--spacing-xl);
-      }
-
-      .laylah-packages-actions {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-m);
-        flex-wrap: wrap;
-      }
-
-      .laylah-packages-actions .btn {
-        min-width: 176px;
-        justify-content: center;
-      }
       /* --- التجاوب مع الجوال والشاشات المتوسطة --- */
       @media (max-width: 1100px) {
         .nav-main-row .nav-links {
           display: none;
+        }
+        .categories-section {
+          padding: 60px 6% 48px;
+          background: var(--md-sys-color-surface);
+          margin-top: 140px;
         }
 
         .nav-links-row {
@@ -624,7 +587,7 @@
           <li><a href="Booking.html">الحجوزات</a></li>
         </ul>
 
-      <div class="search-bar" id="searchBar">
+  <div class="search-bar" id="searchBar">
   <span class="material-symbols-rounded">search</span>
   <input type="text" placeholder="ابحثي ..." id="searchInput" />
   </div>
@@ -752,14 +715,9 @@
       </div>
     </nav>
 
-    <section class="promo-banner-section">
-      <div class="promo-banner"></div>
-    </section>
-
     <section class="categories-section">
       <div class="categories-header">
         <h2 class="categories-title">الخدمات</h2>
-        <a href="Services.html" class="view-all-link">عرض الكل</a>
       </div>
 
       <div class="categories-grid">
@@ -833,26 +791,67 @@
           ></div>
           <div class="category-label">المأذون الشرعي</div>
         </a>
-      </div>
-    </section>
-
-    <section class="laylah-packages-preview">
-      <div class="laylah-packages-content">
-        <h2>باقات ليلة</h2>
-
-        <p>
-          اختر ما يناسبك من باقات جاهزة لدينا بسرعة وسهولة، أو صمّم باقتك بنفسك
-          لتحصل على تجربة مخصصة تعكس احتياجاتك بدقة.
-        </p>
-
-        <div class="laylah-packages-actions">
-          <a href="Packages.html#readyPackages" class="btn btn-primary"
-            >استعرض الباقات</a
-          >
-          <a href="Design your package.html" class="btn btn-secondary"
-            >ابدأ التصميم</a
-          >
-        </div>
+        <a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="background-image: url(&quot;car.png&quot;)"
+          ></div>
+          <div class="category-label">تزيين وتشريع السيارات</div>
+        </a>
+        <a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="background-image: url(&quot;m-s-p-b-01.png&quot;)"
+          ></div>
+          <div class="category-label">إيجار البشوت</div>
+        </a>
+        <a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="background-image: url(&quot;personal.png&quot;)"
+          ></div>
+          <div class="category-label">المنسق الشخصي للحفل</div>
+        </a>
+        <a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="background-image: url(&quot;Hall and stage design.png&quot;)"
+          ></div>
+          <div class="category-label">تنسيق القاعة والكوشة والطاولات</div>
+        </a>
+        <a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="background-image: url(&quot;Sacrifices.png&quot;)"
+          ></div>
+          <div class="category-label">الذبائح</div> </a
+        ><a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="background-image: url(&quot;Rose arrangement.png&quot;)"
+          ></div>
+          <div class="category-label">تنسيق الزهور</div> </a
+        ><a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="background-image: url(&quot;m-s-p-tg-01.jpg&quot;)"
+          ></div>
+          <div class="category-label">تجهيز العروس</div> </a
+        ><a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="background-image: url(&quot;m-s-p-w-01.jpg&quot;)"
+          ></div>
+          <div class="category-label">وصيفة العروس</div> </a
+        ><a href="halls.html" class="category-card">
+          <div
+            class="category-image"
+            style="
+              background-image: url(&quot;Event organization and management.png&quot;);
+            "
+          ></div>
+          <div class="category-label">تنظيم وإدارة الفعاليات</div>
+        </a>
       </div>
     </section>
 
@@ -887,7 +886,9 @@
     </section>
 
     
-    
+
+
+
     <style> li a {
   text-decoration: none;
   color: inherit;
@@ -928,6 +929,9 @@
         &copy; 2026 منصة ليلة. جميع الحقوق محفوظة.
       </div>
     </footer>
+
+
+
 
     <script>
       // دالة للتحقق إذا كان المستخدم يتصفح من جهاز جوال فعلياً

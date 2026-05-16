@@ -46,7 +46,291 @@
 
         --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
+      /* --- صفحة الباقات --- */
+      .packages-page {
+        padding: 140px 6% 80px;
+        background: var(--md-sys-color-surface);
+      }
 
+      .custom-package-section,
+      .ready-packages-section {
+        margin-bottom: 64px;
+      }
+      .packages-intro-section {
+        margin-bottom: 32px;
+      }
+
+      .packages-intro-heading {
+        max-width: 780px;
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .section-header {
+        margin-bottom: var(--spacing-s);
+      }
+      .packages-intro-heading h1 {
+        color: var(--md-sys-color-primary);
+        font-size: 2.4rem;
+        font-weight: 900;
+        line-height: 1.3;
+        margin-bottom: var(--spacing-m);
+      }
+
+      .packages-intro-heading p {
+        color: var(--md-sys-color-on-surface);
+        opacity: 0.72;
+        font-size: 1.05rem;
+      }
+
+      .package-paths-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+      }
+
+      .package-path-card {
+        background: var(--md-sys-color-surface);
+        border: 1px solid var(--md-sys-color-outline);
+        border-radius: var(--radius-medium);
+        padding: var(--spacing-xl);
+        box-shadow: var(--shadow-1);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .package-path-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-2);
+      }
+
+      .package-path-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-full);
+        background: var(--md-sys-color-surface-variant);
+        color: var(--md-sys-color-secondary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        margin-bottom: var(--spacing-m);
+      }
+
+      .package-path-card h3 {
+        color: var(--md-sys-color-primary);
+        font-size: 1.4rem;
+        font-weight: 900;
+        margin-bottom: var(--spacing-m);
+      }
+
+      .package-path-card p {
+        color: var(--md-sys-color-on-surface);
+        opacity: 0.72;
+        margin-bottom: var(--spacing-l);
+      }
+
+      .ready-package-card {
+        background: var(--md-sys-color-on-primary);
+        border: 1px solid var(--md-sys-color-outline);
+        border-radius: var(--radius-medium);
+        box-shadow: var(--shadow-1);
+        transition: var(--transition);
+      }
+
+      .eyebrow {
+        color: var(--md-sys-color-secondary);
+        font-weight: 800;
+        margin-bottom: var(--spacing-s);
+      }
+      .custom-package-card {
+        padding: var(--spacing-xl);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--spacing-xl);
+        background: var(--md-sys-color-on-primary);
+        border: 1px solid var(--md-sys-color-outline);
+        border-radius: var(--radius-medium);
+        box-shadow: var(--shadow-1);
+        transition: var(--transition);
+      }
+
+      .custom-package-action {
+        display: flex;
+        align-items: center;
+      }
+
+      .custom-package-icon {
+        margin-bottom: 16px;
+      }
+      .custom-package-content {
+        max-width: 720px;
+      }
+
+      .custom-package-content h3 {
+        color: var(--md-sys-color-primary);
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-bottom: var(--spacing-s);
+      }
+
+      .custom-package-content p {
+        color: var(--md-sys-color-on-surface);
+        opacity: 0.72;
+        margin-bottom: var(--spacing-l);
+      }
+
+      .custom-package-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-s);
+      }
+
+      .custom-package-tags span {
+        padding: 10px 16px;
+        border-radius: var(--radius-full);
+        background: var(--md-sys-color-surface-variant);
+        color: var(--md-sys-color-primary);
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 900px) {
+        .custom-package-card {
+          grid-template-columns: 1fr;
+          align-items: start;
+          gap: var(--spacing-l);
+        }
+
+        .custom-package-card .btn {
+          width: fit-content;
+          justify-content: center;
+        }
+      }
+
+      .ready-package-card h3 {
+        color: var(--md-sys-color-primary);
+        font-size: 1.4rem;
+        font-weight: 900;
+        margin-bottom: var(--spacing-s);
+      }
+
+      .ready-package-card p {
+        color: var(--md-sys-color-on-surface);
+        opacity: 0.72;
+      }
+
+      .ready-packages-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-xl);
+      }
+
+      .ready-package-card {
+        padding: var(--spacing-l);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-m);
+      }
+      .ready-package-card:hover,
+      .custom-package-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-2);
+      }
+
+      .custom-package-icon {
+        margin-bottom: 16px;
+
+        font-size: 40px;
+        transition: var(--transition);
+      }
+      .package-badge {
+        align-self: flex-start;
+        padding: 4px 12px;
+        border-radius: var(--radius-full);
+        background: var(--md-sys-color-surface-variant);
+        color: var(--md-sys-color-primary);
+        font-size: 0.85rem;
+        font-weight: 800;
+      }
+
+      .ready-package-card ul {
+        list-style: none;
+        display: grid;
+        gap: var(--spacing-s);
+      }
+
+      .ready-package-card li {
+        position: relative;
+        padding-right: 24px;
+        color: var(--md-sys-color-on-surface);
+      }
+
+      .ready-package-card li::before {
+        content: "check_circle";
+        font-family: "Material Symbols Rounded";
+        position: absolute;
+        right: 0;
+        top: 1px;
+        color: var(--md-sys-color-secondary);
+        font-size: 18px;
+      }
+
+      .package-price {
+        margin-top: auto;
+        color: var(--md-sys-color-primary);
+        font-weight: 900;
+        font-size: 1.1rem;
+        font-family: "Tajawal", sans-serif;
+      }
+
+      /* Responsive لصفحة الباقات */
+      @media (max-width: 1100px) {
+        .package-paths-grid {
+          grid-template-columns: 1fr;
+        }
+        .packages-page {
+          padding: 150px 6% 64px;
+        }
+
+        .packages-intro-card {
+          grid-template-columns: 1fr;
+        }
+
+        .ready-packages-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .packages-page {
+          padding-top: 160px;
+        }
+        .packages-intro-heading h1 {
+          font-size: 1.8rem;
+        }
+
+        .package-path-card {
+          padding: var(--spacing-l);
+        }
+        .packages-intro-card,
+        .custom-package-card,
+        .ready-package-card {
+          padding: var(--spacing-l);
+        }
+
+        .packages-intro-content h1 {
+          font-size: 1.8rem;
+        }
+
+        .packages-intro-section,
+        .custom-package-section,
+        .ready-packages-section {
+          margin-bottom: 56px;
+        }
+      }
       * {
         box-sizing: border-box;
         margin: 0;
@@ -224,116 +508,9 @@
       .btn-secondary:hover {
         background-color: var(--md-sys-color-surface-variant);
       }
-
-      /* --- بطاقات الخدمات (Service Cards) --- */
-      .section {
-        padding: 80px 6%;
-      }
-      .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: var(--spacing-xl);
-      }
-
-      .section-header h2 {
-        font-size: 2.2rem;
-        font-weight: 900;
-        color: var(--md-sys-color-primary);
-      }
-
-      .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: var(--spacing-xl);
-      }
-
-      .card {
-        background: var(--md-sys-color-surface);
-        border-radius: var(--radius-medium);
-        overflow: hidden;
-        border: 1px solid var(--md-sys-color-outline);
-        transition: var(--transition);
-      }
-
-      .card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-2);
-      }
-
-      .card-image {
-        height: 240px;
-        background-size: cover;
-        background-position: center;
-        position: relative;
-      }
-
-      .card-badge {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        background: var(--md-sys-color-surface);
-        padding: 4px 12px;
-        border-radius: var(--radius-full);
-        font-weight: 700;
-        font-size: 0.8rem;
-      }
-
-      .card-content {
-        padding: var(--spacing-l);
-        text-align: right;
-      }
-      .card-title {
-        font-size: 1.3rem;
-        font-weight: 800;
-        margin-bottom: var(--spacing-s);
-      }
-      .card-info {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: var(--spacing-m);
-        color: var(--md-sys-color-on-surface);
-        opacity: 0.72;
-        font-size: 0.95rem;
-      }
-      .rating {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        color: var(--md-sys-color-secondary);
-        font-weight: 700;
-      }
-
-      .card-price {
-        font-size: 1.2rem;
-        color: var(--md-sys-color-primary);
-        font-weight: 900;
-        margin-bottom: var(--spacing-m);
-      }
-
-      /* --- الباقات (Packages) --- */
-      .packages-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-xl);
-      }
-
-      .package-box {
-        padding: 40px var(--spacing-l);
-        border-radius: var(--radius-medium);
-        text-align: center;
-        background: var(--md-sys-color-surface-variant);
-        border: 1px solid var(--md-sys-color-outline);
-        display: flex;
-        flex-direction: column;
+      .ready-package-card .btn {
         justify-content: center;
-        align-items: center;
-        min-height: 280px;
-      }
-
-      .package-box.custom {
-        background: var(--md-sys-color-surface);
-        border: 2px dashed var(--md-sys-color-secondary);
+        text-align: center;
       }
 
       /* --- المميزات (Features) --- */
@@ -390,140 +567,6 @@
         color: var(--md-sys-color-primary);
       }
 
-      /* --- قسم الخدمات --- */
-      .categories-section {
-        padding: 48px 6% 48px;
-        background: var(--md-sys-color-surface);
-      }
-
-      .categories-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: var(--spacing-xl);
-      }
-
-      .categories-title {
-        font-size: 2rem;
-        font-weight: 900;
-        color: var(--md-sys-color-primary);
-      }
-
-      .view-all-link {
-        color: var(--md-sys-color-secondary);
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1rem;
-      }
-
-      .view-all-link:hover {
-        color: var(--md-sys-color-primary);
-      }
-
-      .categories-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: var(--spacing-l);
-      }
-
-      .category-card {
-        display: block;
-        text-decoration: none;
-        background: var(--md-sys-color-surface);
-        border: 1px solid var(--md-sys-color-outline);
-        border-radius: var(--radius-medium);
-        overflow: hidden;
-        box-shadow: var(--shadow-1);
-        transition: var(--transition);
-      }
-
-      .category-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-2);
-      }
-
-      .category-image {
-        aspect-ratio: 1 / 1;
-        background: var(--md-sys-color-surface-variant);
-        background-size: cover;
-        background-position: center;
-      }
-
-      .category-label {
-        padding: 14px 16px;
-        font-size: 1rem;
-        font-weight: 800;
-        color: var(--md-sys-color-primary);
-        background: var(--md-sys-color-surface);
-        text-align: right;
-        min-height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-      }
-
-      /* --- البانر الإعلاني الرئيسي --- */
-      .promo-banner-section {
-        padding: 130px 6% 20px;
-        background: var(--md-sys-color-surface);
-        transition: var(--transition);
-      }
-
-      .promo-banner {
-        width: 100%;
-        aspect-ratio: 21 / 9;
-        border-radius: var(--radius-large);
-        overflow: hidden;
-        background-color: transparent;
-        background-image: url("m-pon-m-01.png");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-      /* ===== Laylah Packages Preview ===== */
-      .laylah-packages-preview {
-        min-height: 440px;
-        padding: 72px 6%;
-        background: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .laylah-packages-content {
-        width: min(520px, 100%);
-        margin-inline: auto;
-      }
-
-      .laylah-packages-content h2 {
-        color: var(--md-sys-color-primary);
-        font-size: clamp(2rem, 4vw, 2.7rem);
-        font-weight: 900;
-        line-height: 1.25;
-        margin-bottom: var(--spacing-m);
-      }
-
-      .laylah-packages-content p {
-        color: var(--md-sys-color-on-surface);
-        opacity: 0.72;
-        font-size: 1.05rem;
-        line-height: 1.9;
-        margin-bottom: var(--spacing-xl);
-      }
-
-      .laylah-packages-actions {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-m);
-        flex-wrap: wrap;
-      }
-
-      .laylah-packages-actions .btn {
-        min-width: 176px;
-        justify-content: center;
-      }
       /* --- التجاوب مع الجوال والشاشات المتوسطة --- */
       @media (max-width: 1100px) {
         .nav-main-row .nav-links {
@@ -554,47 +597,6 @@
           min-width: 0;
         }
 
-        .promo-banner-section {
-          padding: 150px 6% 10px;
-        }
-
-        .promo-banner {
-          aspect-ratio: 1 / 1;
-          background-image: url("m-pon-s-01.png");
-          background-size: contain;
-          background-position: center;
-        }
-
-        .categories-section {
-          padding: 24px 6% 40px;
-        }
-
-        .categories-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: var(--spacing-l);
-        }
-
-        .packages-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: var(--spacing-l);
-        }
-
-        .package-box {
-          min-height: 240px;
-          padding: 16px var(--spacing-s);
-        }
-        .package-box h3 {
-          font-size: 0.9rem;
-        }
-        .package-box p {
-          font-size: 0.75rem;
-          margin-bottom: 12px;
-        }
-        .package-box .btn {
-          padding: 8px 12px;
-          font-size: 0.8rem;
-        }
-
         .section-header {
           flex-direction: column;
           align-items: flex-start;
@@ -608,6 +610,41 @@
         }
         .promo-banner-section {
           padding: 116px 6% 0;
+        }
+      }
+      @media (max-width: 600px) {
+        .custom-package-card {
+          padding: var(--spacing-l);
+          gap: var(--spacing-m);
+        }
+
+        .custom-package-content {
+          max-width: 100%;
+        }
+
+        .custom-package-content h3 {
+          font-size: 1.3rem;
+          line-height: 1.35;
+        }
+
+        .custom-package-content p {
+          font-size: 0.95rem;
+          margin-bottom: var(--spacing-m);
+        }
+
+        .custom-package-tags {
+          gap: var(--spacing-s);
+        }
+
+        .custom-package-tags span {
+          font-size: 0.85rem;
+          padding: 8px 12px;
+        }
+
+        .custom-package-card .btn {
+          width: 100%;
+          justify-content: center;
+          text-align: center;
         }
       }
     </style>
@@ -624,7 +661,7 @@
           <li><a href="Booking.html">الحجوزات</a></li>
         </ul>
 
-      <div class="search-bar" id="searchBar">
+    <div class="search-bar" id="searchBar">
   <span class="material-symbols-rounded">search</span>
   <input type="text" placeholder="ابحثي ..." id="searchInput" />
   </div>
@@ -635,7 +672,10 @@
       window.location.href = "search-results.html";
     }
   });
-</script>
+</script>      <div class="search-bar" id="searchBar">
+          <span class="material-symbols-rounded">search</span>
+          <input type="text" placeholder="ابحثي ..." />
+        </div>
 
         <div id="authSection" class="nav-actions">
           <div
@@ -751,111 +791,102 @@
         </ul>
       </div>
     </nav>
-
-    <section class="promo-banner-section">
-      <div class="promo-banner"></div>
-    </section>
-
-    <section class="categories-section">
-      <div class="categories-header">
-        <h2 class="categories-title">الخدمات</h2>
-        <a href="Services.html" class="view-all-link">عرض الكل</a>
-      </div>
-
-      <div class="categories-grid">
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-g-01.jpg&quot;)"
-          ></div>
-          <div class="category-label">قاعات الزفاف والمناسبات</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-p-01.jpg&quot;)"
-          ></div>
-          <div class="category-label">خدمات الإعاشة (البوفيه)</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-mt-01.png&quot;)"
-          ></div>
-          <div class="category-label">المطابخ</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-h-01.jpg&quot;)"
-          ></div>
-          <div class="category-label">الحلويات والضيافة</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-gh-01.png&quot;)"
-          ></div>
-          <div class="category-label">مقدمي الضيافة</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-t-01.jpg&quot;)"
-          ></div>
-          <div class="category-label">التصوير الفوتوغرافي والفيديو</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-c-01.png&quot;)"
-          ></div>
-          <div class="category-label">كوافير وصالونات التجميل</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-cr-01.png&quot;)"
-          ></div>
-          <div class="category-label">كروت الدعوة</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-fr-01.png&quot;)"
-          ></div>
-          <div class="category-label">الفرق الشعبية</div>
-        </a>
-        <a href="halls.html" class="category-card">
-          <div
-            class="category-image"
-            style="background-image: url(&quot;m-s-p-m-01.png&quot;)"
-          ></div>
-          <div class="category-label">المأذون الشرعي</div>
-        </a>
-      </div>
-    </section>
-
-    <section class="laylah-packages-preview">
-      <div class="laylah-packages-content">
-        <h2>باقات ليلة</h2>
-
-        <p>
-          اختر ما يناسبك من باقات جاهزة لدينا بسرعة وسهولة، أو صمّم باقتك بنفسك
-          لتحصل على تجربة مخصصة تعكس احتياجاتك بدقة.
-        </p>
-
-        <div class="laylah-packages-actions">
-          <a href="Packages.html#readyPackages" class="btn btn-primary"
-            >استعرض الباقات</a
-          >
-          <a href="Design your package.html" class="btn btn-secondary"
-            >ابدأ التصميم</a
-          >
+    <main class="packages-page">
+      <section class="packages-intro-section">
+        <div class="packages-intro-heading">
+          <h1>باقات ليلة</h1>
+          <p>
+            اختاري الطريقة الانسب لتخطيط زواجك: باقات جاهزة متنوعة، او تصميم
+            باقة مخصصة.
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
+      <section class="custom-package-section">
+        <div class="section-header">
+          <h2>صممي باقتك</h2>
+        </div>
+
+        <div class="custom-package-card">
+          <div class="custom-package-content">
+            <span class="material-symbols-rounded custom-package-icon">
+              design_services
+            </span>
+
+            <h3>ابني باقتك خطوة بخطوة</h3>
+
+            <p>
+              اختاري الخدمات التي تحتاجينها فقط مثل القاعة، الضيافة، التصوير،
+              التجميل، وكروت الدعوة، ثم اجمعيها في باقة واحدة تناسب ميزانيتك
+              واحتياجاتك.
+            </p>
+
+            <div class="custom-package-tags">
+              <span>مرونة كاملة</span>
+              <span>تحكم بالميزانية</span>
+              <span>اختيار حسب الاحتياج</span>
+            </div>
+          </div>
+
+          <a href=" Design your package.html" class="btn btn-primary">
+            ابدأ تصميم الباقة
+          </a>
+        </div>
+      </section>
+
+      <section id="readyPackages" class="ready-packages-section">
+        <div class="section-header">
+          <h2>الباقات الجاهزة</h2>
+        </div>
+
+        <div class="ready-packages-grid">
+          <article class="ready-package-card">
+            <div class="package-badge">اقتصادية</div>
+            <h3>باقة البداية</h3>
+            <p>اختيار مناسب للحفلات البسيطة مع أهم الخدمات الأساسية.</p>
+
+            <ul>
+              <li>قاعة مناسبة</li>
+              <li>ضيافة أساسية</li>
+              <li>تصوير مختصر</li>
+            </ul>
+
+            <div class="package-price">تبدأ من 18,000 ريال</div>
+            <a href="Booking.html" class="btn btn-secondary">عرض التفاصيل</a>
+          </article>
+
+          <article class="ready-package-card">
+            <div class="package-badge">الأكثر اختيارًا</div>
+            <h3>باقة ليلة المتكاملة</h3>
+            <p>باقة متوازنة تشمل أهم خدمات الزفاف في تجربة واحدة منظمة.</p>
+
+            <ul>
+              <li>قاعة زفاف</li>
+              <li>بوفيه وضيافة</li>
+              <li>تصوير وتنسيق</li>
+            </ul>
+
+            <div class="package-price">تبدأ من 35,000 ريال</div>
+            <a href="Booking.html" class="btn btn-primary">احجز الباقة</a>
+          </article>
+
+          <article class="ready-package-card">
+            <div class="package-badge">فاخرة</div>
+            <h3>باقة الفخامة</h3>
+            <p>تجربة راقية بتفاصيل أكثر وخدمات موسعة لليلة استثنائية.</p>
+
+            <ul>
+              <li>قاعة فاخرة</li>
+              <li>ضيافة متكاملة</li>
+              <li>تصوير، تجميل، وتنسيق</li>
+            </ul>
+
+            <div class="package-price">تبدأ من 60,000 ريال</div>
+            <a href="Booking.html" class="btn btn-secondary">عرض التفاصيل</a>
+          </article>
+        </div>
+      </section>
+    </main>
     <section class="features">
       <div class="feature-item">
         <span
@@ -886,8 +917,6 @@
       </div>
     </section>
 
-    
-    
     <style> li a {
   text-decoration: none;
   color: inherit;
